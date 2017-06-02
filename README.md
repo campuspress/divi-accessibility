@@ -1,6 +1,6 @@
 # Divi Accessibility
 
-A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 guidelines.
+A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 guidelines. While there are many great plugins dealing with improving WordPress theme accessibility, this was developed for issues _specifically_ found within Divi.
 
 ## Features
 
