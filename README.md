@@ -4,17 +4,15 @@ A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 
 
 ## Features
 
-|Feature													|	Description			|
-|---															|---							|
-|__ARIA support__									|Add appropriate ARIA attributes across Divi elements & modules.|
-|__Dropdown keyboard navigation__	|Allow easier navigation of Divi dropdown menus with the keyboard.|
-|__Fix labels__										|Fix missing labels & incorrect or missing assignments to their corresponding inputs.|
-|__Focusable modules__						|Allow Divi modules such as _Toggle_ & _Accordion_ to be focusable with keyboard navigation. Hitting enter will open/close when focused.|
-|__Keyboard navigation outline__	|Add an outline to focused elements when navigation with the keyboard.|
-|__Outline color__								|Change keyboard outline color used with keyboard navigation|
-|__Screen reader text__						|Reverses Divi incorrectly applying `display: none;` on its own screen reader classes and generate screen reader text in appropriate areas where it is missing.|
-|__Skip navigation link__					|Skip navigation link optimized for the theme markup.|
-|__Tota11y__											|A 3rd party tool to help visualize how your site performs with assistive technology.|
++ Adds appropriate ARIA attributes
++ Improved keyboard navigation in menus
++ Fixes missing & incorrectly assigned labels
++ Makes modules such as __Toggle__ & __Accordion__ focusable and keyboard interactive
++ Adds a visual outline to focusable elements for _keyboard only_ navigation
++ Ability to change _keyboard only_ outline color
++ Fixes Divi incorrectly using screen reader classes
++ Adds skip navigation link optimized for Divi markup
++ Tota11y integration
 
 ## Resources
 
