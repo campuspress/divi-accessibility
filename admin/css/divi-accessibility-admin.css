@@ -1,0 +1,27 @@
+@media only screen and (min-width: 782px) {
+	.da11y-settings-information {
+		position: absolute;
+		right: 20px;
+		width: 220px;
+	}
+	.da11y-settings {
+		width: calc(100% - 300px);
+	}
+}
+@media only screen and (min-width: 1300px) {
+	.da11y-settings-information {
+		position: absolute;
+		right: 20px;
+		width: 300px;
+	}
+	.da11y-settings {
+		width: calc(100% - 380px);
+	}
+	.divi_page_divi_accessibility .form-table th {
+		width: 230px;
+	}
+}
+.da11y-settings-information {
+	background-color: #fff;
+	padding: 1em 2em;
+}
