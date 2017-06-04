@@ -1,7 +1,8 @@
 # Files to exclude when creating archive.
 
-*.git           export-ignore
-*.gitignore     export-ignore
-*.gitattributes export-ignore
-.travis.yml     export-ignore
-test/           export-ignore
+*.git              export-ignore
+*.gitignore        export-ignore
+*.gitattributes    export-ignore
+.travis.yml        export-ignore
+phpcs.ruleset.xml  export-ignore
+tests/             export-ignore
