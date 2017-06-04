@@ -20,7 +20,6 @@ if ( ! defined( 'WPINC' ) ) {
 require_once DA11Y_PATH . 'admin/class-divi-accessibility-admin.php';
 
 $default_options = Divi_Accessibility_Admin::get_options_list();
-$settings = $this->settings;
 
 ?>
 <style>
