@@ -1,6 +1,7 @@
 ![divi-accessibility](https://cloud.githubusercontent.com/assets/6676674/26787287/72430f40-49d7-11e7-89ec-a5bf07eb0f97.png)
 
-[![Build Status](https://api.travis-ci.org/campuspress/divi-accessibility.svg?branch=master)](https://travis-ci.org/campuspress/divi-accessibility)
+[![Build Status](https://api.travis-ci.org/campuspress/divi-accessibility.svg?branch=master)](https://travis-ci.org/campuspress/divi-accessibility) [![GPL License](https://img.shields.io/badge/license-gpl-green.svg)](https://github.com/campuspress/divi-accessibility/blob/master/LICENSE)
+
 
 A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 guidelines. While there are many great plugins dealing with improving WordPress theme accessibility, this was developed for issues _specifically_ found within Divi.
 
