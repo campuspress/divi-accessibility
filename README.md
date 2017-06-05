@@ -22,6 +22,6 @@ A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 
 
 ## Credit
 
-Plugin created by [CampusPress](https://campuspress.com).
+Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off of [The Accessible Icon Project](http://accessibleicon.org/).
 
 ![campuspress](https://cloud.githubusercontent.com/assets/6676674/26735904/e8991632-4791-11e7-8ff4-90efbf6391ea.png)
