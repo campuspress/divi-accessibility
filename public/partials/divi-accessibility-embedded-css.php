@@ -40,8 +40,7 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
 
 ?>
-*:active.keyboard-outline,
-*:focus.keyboard-outline {
+.keyboard-outline {
 	<?php
 
 	$outline_color = $default_options['outline_color'];
@@ -58,12 +57,17 @@ if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
 button:active.keyboard-outline,
 button:focus.keyboard-outline,
 input:active.keyboard-outline,
-input:focus.keyboard-outline {
+input:focus.keyboard-outline,
+a[role="tab"].keyboard-outline {
 	outline-offset: -5px;
 }
 .et-search-form input:focus.keyboard-outline {
 	padding-left: 15px;
 	padding-right: 15px;
+}
+.et_pb_tab {
+	-webkit-animation: none !important;
+	animation: none !important;
 }
 <?php
 

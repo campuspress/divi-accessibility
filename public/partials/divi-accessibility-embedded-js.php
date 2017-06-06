@@ -227,7 +227,7 @@ if ( $this->can_load( 'focusable_modules' ) ) { ?>
 			});
 
 			$(document).keyup(function (e) {
-				// Enter
+				// Enter.
 				if (e.which === 13) {
 					// Expand Accordion & Toggle modules when enter is hit while focused.
 					$('.et_pb_toggle:focus .et_pb_toggle_title').trigger('click');
@@ -322,21 +322,33 @@ if ( $this->can_load( 'aria_support' ) ) {
 			});
 
 			/**
-			 * Add aria-selected="false".
+			 * Add inital state:
+			 *
+			 * aria-selected="false"
+			 * aria-expanded="false"
+			 * tabindex=-1
 			 *
 			 * @divi-module  Tab
 			 */
 			$('.et_pb_tabs_controls li:not(.et_pb_tab_active) a').each(function () {
 				$(this).attr('aria-selected', 'false');
+				$(this).attr('aria-expanded', 'false');
+				$(this).attr('tabindex', -1);
 			});
 
 			/**
-			 * Add aria-selected="true".
-			 *
-			 * @divi-module  Tab
+			* Add inital state:
+			*
+			* aria-selected="true"
+			* aria-expanded="true"
+			* tabindex=-1
+			*
+			* @divi-module  Tab
 			 */
 			$('.et_pb_tabs_controls li.et_pb_tab_active a').each(function () {
 				$(this).attr('aria-selected', 'true');
+				$(this).attr('aria-expanded', 'true');
+				$(this).attr('tabindex', 0);
 			});
 
 			/**
@@ -386,7 +398,7 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 * @divi-module  Tab
 			 */
 			$('.et_pb_tabs').each(function (e) {
-				$(this).attr('data-a11y-id', 'et_pb_tab_module_' + e);
+				$(this).attr('data-da11y-id', 'et_pb_tab_module_' + e);
 			});
 
 			/**
@@ -396,19 +408,54 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 */
 			$('.et_pb_tabs_controls a').on('click', function () {
 				var id = $(this).attr('id');
-				var namespace = $(this).closest('.et_pb_tabs').attr('data-a11y-id'); // Used as a selector to scope changes to current module.
+				var namespace = $(this).closest('.et_pb_tabs').attr('data-da11y-id'); // Used as a selector to scope changes to current module.
 
-				// Reset all tab controls to be aria-selected="false".
-				$('#' + namespace + ' .et_pb_tabs_controls a').attr('aria-selected', 'false');
+				// Reset all tab controls to be aria-selected="false" & aria-expanded="false".
+				$('[data-da11y-id="' + namespace + '"] .et_pb_tabs_controls a')
+					.attr('aria-selected', 'false')
+					.attr('aria-expanded', 'false')
+					.attr('tabindex', -1);
 
-				// Make active tab control aria-selected="true".
-				$(this).attr('aria-selected', 'true');
+				// Make active tab control aria-selected="true" & aria-expanded="true".
+				$(this)
+					.attr('aria-selected', 'true')
+					.attr('aria-expanded', 'true')
+					.attr('tabindex', 0);
 
 				// Reset all tabs to be aria-hidden="true".
-				$('#' + namespace + ' .et_pb_tab').attr('aria-hidden', 'true');
+				$('#' + namespace + ' .et_pb_tab')
+					.attr('aria-hidden', 'true');
 
 				// Label active tab panel as aria-hidden="false".
-				$('[aria-labelledby="' + id + '"]').attr('aria-hidden', 'false');
+				$('[aria-labelledby="' + id + '"]')
+					.attr('aria-hidden', 'false');
+			});
+
+			// Arrow navigation for tab modules
+			$('.et_pb_tabs_controls a').keyup(function (e) {
+				var namespace = $(this).closest('.et_pb_tabs').attr('data-da11y-id');
+				var module = $('[data-da11y-id="' + namespace + '"]');
+
+				if (e.which === 39 || e.which === 40) { // Down & Right.
+					var next = module.find('li.et_pb_tab_active').next();
+
+					if (next.length > 0) {
+						next.find('a').trigger('click');
+					} else {
+						module.find('li:first a').trigger('click');
+					}
+				} else if (e.which === 37 || e.which === 38) { // Up & Left.
+					var next = module.find('li.et_pb_tab_active').prev();
+
+					if (next.length > 0) {
+						next.find('a').trigger('click');
+					} else {
+						module.find('li:last a').trigger('click');
+					}
+				}
+
+				$('.et_pb_tabs_controls a').removeClass('keyboard-outline');
+				module.find('li.et_pb_tab_active a').addClass('keyboard-outline');
 			});
 
 			/**
@@ -418,7 +465,7 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 * @divi-module  Search
 			 */
 			$('.et_pb_search').each(function (e) {
-				$(this).attr('data-a11y-id', 'et_pb_search_module_' + e);
+				$(this).attr('data-da11y-id', 'et_pb_search_module_' + e);
 			});
 
 			/**
