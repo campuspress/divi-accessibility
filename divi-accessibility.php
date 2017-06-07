@@ -17,7 +17,7 @@
  * Plugin URI:        https://github.com/campuspress/divi-accessibility
  * Description:       Improve Divi accessibility in accordance with WCAG 2.0 guidelines.
  * Version:           1.0.0
- * Author:            Joseph Fusco
+ * Author:            CampusPress
  * Author URI:        https://campuspress.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
