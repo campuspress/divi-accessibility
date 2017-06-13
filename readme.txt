@@ -46,5 +46,8 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
+= 1.0.1 =
+* Improve ARIA for Tab module
+
 = 1.0.0 =
 * Initial Release
