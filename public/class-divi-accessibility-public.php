@@ -79,7 +79,7 @@ class Divi_Accessibility_Public {
 	/**
 	 * Render the gemerated CSS for the plugin.
 	 *
-	 * @since  1.0.0
+	 * @since    1.0.0
 	 */
 	public function embedded_styles() {
 		include_once 'partials/divi-accessibility-embedded-css.php';
@@ -88,10 +88,28 @@ class Divi_Accessibility_Public {
 	/**
 	 * Render the gemerated JS for the plugin.
 	 *
-	 * @since  1.0.0
+	 * @since    1.0.0
 	 */
 	public function embedded_scripts() {
 		include_once 'partials/divi-accessibility-embedded-js.php';
+	}
+
+	/**
+	 * Remove Divi viewport meta since we want to load our own.
+	 *
+	 * @since    1.0.2
+	 */
+	public function remove_divi_viewport_meta() {
+		remove_action( 'wp_head', 'et_add_viewport_meta' );
+	}
+
+	/**
+	 * Allow users to pinch and zoom divi theme.
+	 *
+	 * @since    1.0.2
+	 */
+	public function accessible_viewport_meta() {
+		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0 />';
 	}
 
 	/**
