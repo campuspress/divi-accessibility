@@ -1,5 +1,5 @@
 === Divi Accessibility ===
-Contributors: campuspress, JoeFusco
+Contributors: campuspress, JoeFusco, alexstine
 Tags: divi, accessibility, accessible, navigation, wcag, a11y, section508, focus, labels, aria
 Requires at least: 3.5.0
 Tested up to: 4.8.2
