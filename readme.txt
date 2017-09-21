@@ -2,7 +2,7 @@
 Contributors: campuspress, JoeFusco
 Tags: divi, accessibility, accessible, navigation, wcag, a11y, section508, focus, labels, aria
 Requires at least: 3.5.0
-Tested up to: 4.8.0
+Tested up to: 4.8.2
 Stable tag: trunk
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -45,6 +45,9 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 
 == Changelog ==
+
+= 1.0.2 =
+* Fix Divi viewport meta tag to make theme more accessibile
 
 = 1.0.1 =
 * Improve ARIA for Tab module
