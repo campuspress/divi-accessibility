@@ -109,7 +109,7 @@ class Divi_Accessibility_Public {
 	 * @since    1.0.2
 	 */
 	public function accessible_viewport_meta() {
-		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0 />';
+		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
 	}
 
 	/**
