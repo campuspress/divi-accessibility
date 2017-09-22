@@ -46,6 +46,9 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
+= 1.0.3 =
+* Add missing quote in viewport tag causing issues in head
+
 = 1.0.2 =
 * Fix Divi viewport meta tag to make theme more accessibile
 
