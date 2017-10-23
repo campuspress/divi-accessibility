@@ -2,7 +2,7 @@
 Contributors: campuspress, JoeFusco, alexstine
 Tags: divi, accessibility, accessible, navigation, wcag, a11y, section508, focus, labels, aria
 Requires at least: 3.5.0
-Tested up to: 4.8.2
+Tested up to: 4.9
 Stable tag: trunk
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -45,6 +45,9 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 
 == Changelog ==
+
+= 1.0.4 =
+* Fix contact module form not validating properly when using captcha
 
 = 1.0.3 =
 * Add missing quote in viewport tag causing issues in head
