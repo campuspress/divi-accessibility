@@ -265,10 +265,7 @@ if ( $this->can_load( 'fix_labels' ) ) {
 			 * @divi-module  Contact
 			 */
 			$('.et_pb_contact_form').each(function (e) {
-				var captchaQuestion = $(this).find('.et_pb_contact_captcha_question');
-				$(this).find('input.et_pb_contact_captcha').attr('id', 'et_pb_contact_module_captcha_' + e);
-
-				captchaQuestion.wrap('<label for="et_pb_contact_module_captcha_' + e + '"></label>');
+				$(this).find('.et_pb_contact_captcha_question').parent().wrap('<label></label>');
 			});
 		});
 	})(jQuery);
