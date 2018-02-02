@@ -78,7 +78,7 @@ if ( $this->can_load( 'screen_reader_text' ) ) {
 ?>
 .et_pb_contact_form_label,
 .et_pb_search .screen-reader-text {
-	display: block !important; <?php // Reverse Divi adding display: none to screen reaader text ?>
+	display: block !important; <?php // Reverse Divi adding display: none to screen reader text ?>
 }
 .da11y-screen-reader-text,
 .et_pb_contact_form_label,

@@ -254,9 +254,9 @@ if ( $this->can_load( 'fix_labels' ) ) {
 			 *
 			 * @divi-module  Search
 			 */
-			$('.et_pb_search').each(function (e) {
-				$(this).find('label').attr('for', 'et_pb_search_module_input_' + e);
-				$(this).find('input.et_pb_s').attr('id', 'et_pb_search_module_input_' + e);
+			$('.et-search-field').each(function (e) {
+				$(this).attr('id', 'et_pb_search_module_input_' + e);
+				$('#et_pb_search_module_input_' + e).before('<label class="screen-reader-text" for="et_pb_search_module_input_' + e + '">Search for...</label>');
 			});
 
 			/**
