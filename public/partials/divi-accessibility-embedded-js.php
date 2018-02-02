@@ -257,7 +257,7 @@ if ( $this->can_load( 'fix_labels' ) ) {
 			$('.et-search-field').each(function (e) {
 				$(this).attr('id', 'et_pb_search_module_input_' + e);
 				$('#et_pb_search_module_input_' + e).before('<label class="screen-reader-text" for="et_pb_search_module_input_' + e + '">Search for...</label>');
-				$(this).append('<button type="submit" class="screen-reader-text">Search</button>');
+				$('#et_pb_search_module_input_' + e).after('<button type="submit" class="screen-reader-text">Search</button>');
 			});
 
 			/**
