@@ -325,7 +325,7 @@ class Divi_Accessibility_Admin {
 		// Aria-hidden on icons.
 		add_settings_field(
 			$this->da11y . '_aria_hidden_icons',
-			'Hide icons to screen readers',
+			'Hide icons',
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
@@ -333,7 +333,7 @@ class Divi_Accessibility_Admin {
 				'name'          => 'aria_hidden_icons',
 				'label_for'     => $this->da11y . '_aria_hidden_icons',
 				'label_text'    => 'Hide all icons to screen readers so text is read normally.',
-				'label_subtext' => '',
+				'label_subtext' => 'Note: This may not work for all icons.',
 			)
 		);
 
@@ -464,12 +464,13 @@ class Divi_Accessibility_Admin {
 				<?php checked( $checked, 1 ); ?>
 				name="<?php echo $this->da11y_options . '[' . $name . ']'; ?>"
 				id="<?php echo $label_for; ?>"
+				aria-describedby="<?php echo $label_for; ?>-desc"
 				value="1" />
 				<?php echo $label_text; ?>
 			</label>
 
 			<?php if ( '' != $label_subtext ) { ?>
-				<p class="description">(<em><?php echo $label_subtext; ?></em>)</p>
+				<p id="<?php echo $label_for; ?>-desc" class="description">(<em><?php echo $label_subtext; ?></em>)</p>
 			<?php } ?>
 
 		</fieldset>

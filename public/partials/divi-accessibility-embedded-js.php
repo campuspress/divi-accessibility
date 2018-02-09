@@ -521,7 +521,7 @@ if ( $this->can_load( 'aria_hidden_icons' ) ) {
 			/**
 			 * Add aria-hidden="true" to all icons
 			 */
-			$('#et_topsearch, .et_close_search_field, .et_pb_main_blurb_image').attr('aria-hidden', 'true');
+			$('#et_top_search, .et_close_search_field, .et_pb_main_blurb_image').attr('aria-hidden', 'true');
 		});
 	})(jQuery);
 	</script>
