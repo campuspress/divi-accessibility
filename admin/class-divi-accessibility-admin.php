@@ -169,6 +169,7 @@ class Divi_Accessibility_Admin {
 			'outline_color'                => '#2ea3f2',
 			'screen_reader_text'           => 1,
 			'skip_navigation_link'         => 1,
+			'aria_hidden_icons' => 1,
 			'tota11y'                      => 0,
 			'developer_mode'               => 0,
 		);
@@ -318,6 +319,21 @@ class Divi_Accessibility_Admin {
 				'label_for'     => $this->da11y . '_skip_navigation_link',
 				'label_text'    => 'Allow user to skip over Divi navigation when using keyboard and go straight to content.',
 				'label_subtext' => 'Requires screen reader text option to be on',
+			)
+		);
+
+		// Aria-hidden on icons.
+		add_settings_field(
+			$this->da11y . '_aria_hidden_icons',
+			'Hide icons to screen readers',
+			array( $this, 'divi_accessibility_checkbox_cb' ),
+			$this->da11y,
+			$general_section,
+			array(
+				'name'          => 'aria_hidden_icons',
+				'label_for'     => $this->da11y . '_aria_hidden_icons',
+				'label_text'    => 'Hide all icons to screen readers so text is read normally.',
+				'label_subtext' => '',
 			)
 		);
 

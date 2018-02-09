@@ -509,3 +509,22 @@ if ( $this->can_load( 'aria_support' ) ) {
 <?php
 
 } // End if().
+
+if ( $this->can_load( 'aria_hidden_icons' ) ) {
+
+?>
+
+	<script type="text/javascript">
+	(function ($) {
+		$(document).ready(function () {
+
+			/**
+			 * Add aria-hidden="true" to all icons
+			 */
+			$('#et_topsearch, .et_close_search_field, .et_pb_main_blurb_image').attr('aria-hidden', 'true');
+		});
+	})(jQuery);
+	</script>
+
+<?php
+}
