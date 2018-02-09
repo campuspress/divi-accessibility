@@ -24,7 +24,6 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @package    Divi_Accessibility
  * @subpackage Divi_Accessibility/includes
- * @author     Joseph Fusco <hello@josephfus.co>
  */
 class Divi_Accessibility_Loader {
 
