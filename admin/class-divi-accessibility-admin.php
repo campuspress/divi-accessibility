@@ -169,7 +169,7 @@ class Divi_Accessibility_Admin {
 			'outline_color'                => '#2ea3f2',
 			'screen_reader_text'           => 1,
 			'skip_navigation_link'         => 1,
-			'aria_hidden_icons' => 1,
+			'aria_hidden_icons'            => 1,
 			'tota11y'                      => 0,
 			'developer_mode'               => 0,
 		);
@@ -405,6 +405,7 @@ class Divi_Accessibility_Admin {
 					$valid_options[ $key ] = $default_color;
 
 				}
+
 			} elseif ( isset( $input[ $key ] ) && 1 == $input[ $key ] ) {
 
 				$valid_options[ $key ] = 1;
