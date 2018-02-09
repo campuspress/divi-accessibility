@@ -23,7 +23,6 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @package    Divi_Accessibility
  * @subpackage Divi_Accessibility/admin
- * @author     Joseph Fusco <hello@josephfus.co>
  */
 class Divi_Accessibility_Admin {
 

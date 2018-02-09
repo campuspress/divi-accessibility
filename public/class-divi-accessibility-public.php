@@ -18,7 +18,6 @@
  *
  * @package    Divi_Accessibility
  * @subpackage Divi_Accessibility/public
- * @author     Joseph Fusco <hello@josephfus.co>
  */
 class Divi_Accessibility_Public {
 

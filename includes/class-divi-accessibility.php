@@ -30,7 +30,6 @@ if ( ! defined( 'WPINC' ) ) {
  * @since      1.0.0
  * @package    Divi_Accessibility
  * @subpackage Divi_Accessibility/includes
- * @author     Joseph Fusco <hello@josephfus.co>
  */
 class Divi_Accessibility {
 
