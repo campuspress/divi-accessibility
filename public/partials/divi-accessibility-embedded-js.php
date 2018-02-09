@@ -434,7 +434,7 @@ if ( $this->can_load( 'aria_support' ) ) {
 				var namespace = $(this).closest('.et_pb_tabs').attr('data-da11y-id');
 				var module = $('[data-da11y-id="' + namespace + '"]');
 
-				if (e.which === 39 || e.which === 40) { // Down & Right.
+				if (e.which === 39) { // Right.
 					var next = module.find('li.et_pb_tab_active').next();
 
 					if (next.length > 0) {
@@ -442,7 +442,7 @@ if ( $this->can_load( 'aria_support' ) ) {
 					} else {
 						module.find('li:first a').trigger('click');
 					}
-				} else if (e.which === 37 || e.which === 38) { // Up & Left.
+				} else if (e.which === 37) { // Left.
 					var next = module.find('li.et_pb_tab_active').prev();
 
 					if (next.length > 0) {
