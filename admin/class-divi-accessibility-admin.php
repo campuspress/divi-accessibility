@@ -169,6 +169,7 @@ class Divi_Accessibility_Admin {
 			'outline_color'                => '#2ea3f2',
 			'screen_reader_text'           => 1,
 			'skip_navigation_link'         => 1,
+			'aria_hidden_icons'            => 1,
 			'tota11y'                      => 0,
 			'developer_mode'               => 0,
 		);
@@ -321,6 +322,21 @@ class Divi_Accessibility_Admin {
 			)
 		);
 
+		// Aria-hidden on icons.
+		add_settings_field(
+			$this->da11y . '_aria_hidden_icons',
+			'Hide icons',
+			array( $this, 'divi_accessibility_checkbox_cb' ),
+			$this->da11y,
+			$general_section,
+			array(
+				'name'          => 'aria_hidden_icons',
+				'label_for'     => $this->da11y . '_aria_hidden_icons',
+				'label_text'    => 'Hide all icons to screen readers so text is read normally.',
+				'label_subtext' => 'Note: This may not work for all icons.',
+			)
+		);
+
 		// Add tools section.
 		add_settings_section(
 			$tools_section,
@@ -389,6 +405,7 @@ class Divi_Accessibility_Admin {
 					$valid_options[ $key ] = $default_color;
 
 				}
+
 			} elseif ( isset( $input[ $key ] ) && 1 == $input[ $key ] ) {
 
 				$valid_options[ $key ] = 1;
@@ -448,12 +465,13 @@ class Divi_Accessibility_Admin {
 				<?php checked( $checked, 1 ); ?>
 				name="<?php echo $this->da11y_options . '[' . $name . ']'; ?>"
 				id="<?php echo $label_for; ?>"
+				aria-describedby="<?php echo $label_for; ?>-desc"
 				value="1" />
 				<?php echo $label_text; ?>
 			</label>
 
 			<?php if ( '' != $label_subtext ) { ?>
-				<p class="description">(<em><?php echo $label_subtext; ?></em>)</p>
+				<p id="<?php echo $label_for; ?>-desc" class="description">(<em><?php echo $label_subtext; ?></em>)</p>
 			<?php } ?>
 
 		</fieldset>
