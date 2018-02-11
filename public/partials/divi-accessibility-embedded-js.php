@@ -277,7 +277,7 @@ if ( $this->can_load( 'fix_labels' ) ) {
 			});
 
 			/**
-			 * Add unique ID to search module input with matching label.
+			 * Add unique ID to contact module input with matching label.
 			 *
 			 * @divi-module  Contact
 			 */
@@ -336,7 +336,7 @@ if ( $this->can_load( 'aria_support' ) ) {
 			});
 
 			/**
-			 * Add inital state:
+			 * Add initial state:
 			 *
 			 * aria-selected="false"
 			 * aria-expanded="false"
@@ -351,7 +351,7 @@ if ( $this->can_load( 'aria_support' ) ) {
 			});
 
 			/**
-			* Add inital state:
+			* Add initial state:
 			*
 			* aria-selected="true"
 			* aria-expanded="true"
@@ -490,6 +490,20 @@ if ( $this->can_load( 'aria_support' ) ) {
 			$('[data-required_mark="required"]').each(function () {
 				$(this).attr('aria-required', 'true');
 			});
+
+			/**
+			 * Hide hidden error field on contact form.
+			 *
+			 * @divi-module  Contact Form
+			 */
+			$('.et_pb_contactform_validate_field').attr('type', 'hidden');
+
+			/**
+			 * Add alert role to error or success contact form message
+			 *
+			 * @divi-module  Contact Form
+			 */
+			$('.et-pb-contact-message').attr('role', 'alert');
 
 			/**
 			 * Add role="menubar" to top level unorderd lists.
