@@ -100,7 +100,7 @@ if ( $this->can_load( 'screen_reader_text' ) ) {
 }
 .da11y-screen-reader-text:focus {
 	background: #f1f1f1;
-	color: #0073aa;
+	color: #00547A;
 	outline: 0;
 	-webkit-box-shadow: 0 0 2px 2px rgba(0,0,0,.6);
 	box-shadow: 0 0 2px 2px rgba(0,0,0,.6);
