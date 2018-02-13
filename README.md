@@ -14,7 +14,7 @@ A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 
 + Ability to change _keyboard only_ outline color
 + Fixes Divi incorrectly using screen reader classes
 + Adds skip navigation link optimized for Divi markup
-+ Hide icons from screen readers which can effect reading of text
++ Hide icons from screen readers which can affect reading of text
 + Tota11y integration
 
 ## Resources
