@@ -21,7 +21,7 @@ A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 
 * Ability to change keyboard only outline color
 * Fixes Divi incorrectly using screen reader classes
 * Adds skip navigation link optimized for Divi markup
-* Hide icons from screen readers which can effect reading of text
+* Hide icons from screen readers which can affect reading of text
 * Tota11y integration
 
 = Contribute on GitHub =
@@ -50,6 +50,16 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 
 == Changelog ==
+
+= 1.1 =
+* Add option to hide decorative icons from screen readers
+* Add hidden submit button to search
+* Add alert role to success/error form message
+* Increase color contrast of skiplink to meet WCAG AAA
+* Fix contact module form not validating properly when using captcha
+* Fix error with label not being added to search form
+* Prevent spacebar from scrolling page when toggles have focus
+* Remove up and down keys from changing tabs
 
 = 1.0.4 =
 * Fix contact module form not validating properly when using captcha

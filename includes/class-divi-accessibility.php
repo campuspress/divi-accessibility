@@ -7,7 +7,7 @@
  * public-facing side of the site and the admin area.
  *
  * @link       https://campuspress.com
- * @since      1.0.0
+ * @since      1.1.0
  *
  * @package    Divi_Accessibility
  * @subpackage Divi_Accessibility/includes
@@ -86,13 +86,13 @@ class Divi_Accessibility {
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
-	 * @since    1.0.6
+	 * @since    1.1.0
 	 */
 	public function __construct() {
 
 		$this->da11y         = 'divi_accessibility';
 		$this->da11y_options = 'divi_accessibility_options';
-		$this->version       = '1.0.6';
+		$this->version       = '1.1.0';
 
 		$this->load_dependencies();
 		$this->load_settings();

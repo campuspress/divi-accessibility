@@ -180,7 +180,7 @@ class Divi_Accessibility_Admin {
 	/**
 	 * Register all related settings of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.0
 	 */
 	public function register_settings() {
 
