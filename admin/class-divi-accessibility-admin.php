@@ -332,7 +332,7 @@ class Divi_Accessibility_Admin {
 				'name'          => 'aria_hidden_icons',
 				'label_for'     => $this->da11y . '_aria_hidden_icons',
 				'label_text'    => 'Hide all icons to screen readers so text is read normally.',
-				'label_subtext' => 'Note: This may not work for all icons.',
+				'label_subtext' => 'Note: This may not work for all icons',
 			)
 		);
 
