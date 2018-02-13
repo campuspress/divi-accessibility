@@ -21,9 +21,7 @@ require_once DA11Y_PATH . 'admin/class-divi-accessibility-admin.php';
 
 $default_options = Divi_Accessibility_Admin::get_options_list();
 
-?>
-<style>
-<?php
+echo '<style>';
 
 if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 
@@ -83,6 +81,7 @@ if ( $this->can_load( 'screen_reader_text' ) ) {
 }
 .da11y-screen-reader-text,
 .et_pb_contact_form_label,
+.widget_search .screen-reader-text,
 .et_pb_search .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px);
 	position: absolute !important;
@@ -118,5 +117,4 @@ if ( $this->can_load( 'screen_reader_text' ) ) {
 
 } // End if().
 
-?>
-</style>
+echo '</style>';
