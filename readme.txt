@@ -28,6 +28,10 @@ A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 
 
 [https://github.com/campuspress/divi-accessibility/](https://github.com/campuspress/divi-accessibility/)
 
+= Support =
+
+If you would like to make a donation, we encourage you to consider donating to [Knowbility](https://knowbility.org/) and help support their mission to provide access to technology for people with disabilities.
+
 = Credit =
 
 Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off of [The Accessible Icon Project](http://accessibleicon.org/).
