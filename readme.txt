@@ -51,6 +51,9 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
+= 1.2 =
+* Add option to remove id attribute from list items in navigation menus
+
 = 1.1 =
 * Add option to hide decorative icons from screen readers
 * Add hidden submit button to search

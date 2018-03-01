@@ -166,6 +166,21 @@ class Divi_Accessibility_Public {
 	}
 
 	/**
+	 * Prevent WordPress from adding a unique ID from menu list items.
+	 * Because Divi uses js to build the mobile navigation menu from the main navigation links,
+	 * unique ID's are cloned, causing issues with accessibility & validation.
+	 *
+	 * @since     1.2.0
+	 */
+	public function remove_duplicate_menu_ids() {
+
+		if ( $this->can_load( 'fix_duplicate_menu_ids' ) ) {
+			add_filter( 'nav_menu_item_id', '__return_null', 1000 );
+		}
+
+	}
+
+	/**
 	 * Log plugin info to console for admin users.
 	 *
 	 * @since     1.0.0
