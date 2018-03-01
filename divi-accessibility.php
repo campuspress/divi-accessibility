@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://campuspress.com
- * @since             1.0.0
+ * @since             1.2.0
  * @package           Divi_Accessibility
  *
  * @wordpress-plugin
  * Plugin Name:       Divi Accessibility
  * Plugin URI:        https://wordpress.org/plugins/accessible-divi/
  * Description:       Improve Divi accessibility in accordance with WCAG 2.0 guidelines.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Author:            CampusPress
  * Author URI:        https://campuspress.com
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'DA11Y_FILE' ) ) {
 	define( 'DA11Y_FILE', plugin_basename( __FILE__ ) );
 }
 
-// Used for referring to the plugin base path
+// Used for referring to the plugin base path.
 if ( ! defined( 'DA11Y_PATH' ) ) {
 	define( 'DA11Y_PATH', plugin_dir_path( __FILE__ ) );
 }

@@ -86,13 +86,13 @@ class Divi_Accessibility {
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
-	 * @since    1.1.0
+	 * @since    1.2.0
 	 */
 	public function __construct() {
 
 		$this->da11y         = 'divi_accessibility';
 		$this->da11y_options = 'divi_accessibility_options';
-		$this->version       = '1.1.0';
+		$this->version       = '1.2.0';
 
 		$this->load_dependencies();
 		$this->load_settings();
@@ -174,6 +174,7 @@ class Divi_Accessibility {
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'embedded_scripts' );
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'developer_mode' );
 		$this->loader->add_action( 'init', $plugin_public, 'remove_divi_viewport_meta' );
+		$this->loader->add_action( 'init', $plugin_public, 'remove_duplicate_menu_ids' );
 		$this->loader->add_action( 'wp_head', $plugin_public, 'accessible_viewport_meta' );
 
 	}
