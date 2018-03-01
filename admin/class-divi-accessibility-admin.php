@@ -169,6 +169,7 @@ class Divi_Accessibility_Admin {
 			'screen_reader_text'           => 1,
 			'skip_navigation_link'         => 1,
 			'aria_hidden_icons'            => 1,
+			'fix_duplicate_menu_ids'       => 1,
 			'tota11y'                      => 0,
 			'developer_mode'               => 0,
 		);
@@ -332,7 +333,22 @@ class Divi_Accessibility_Admin {
 				'name'          => 'aria_hidden_icons',
 				'label_for'     => $this->da11y . '_aria_hidden_icons',
 				'label_text'    => 'Hide all icons to screen readers so text is read normally.',
-				'label_subtext' => 'Note: This may not work for all icons',
+				'label_subtext' => 'This may not work for all icons',
+			)
+		);
+
+		// Fix duplicate menu ids.
+		add_settings_field(
+			$this->da11y . '_fix_duplicate_menu_ids',
+			'Fix duplicate menu ids',
+			array( $this, 'divi_accessibility_checkbox_cb' ),
+			$this->da11y,
+			$general_section,
+			array(
+				'name'          => 'fix_duplicate_menu_ids',
+				'label_for'     => $this->da11y . '_fix_duplicate_menu_ids',
+				'label_text'    => 'Because Divi uses the same menu twice (Once for the primary menu and again for the mobile menu), the unique ID\'s are duplicated causing validation issues. This option prevents WordPress from adding a unique ID to the menu list items.',
+				'label_subtext' => '',
 			)
 		);
 
