@@ -174,8 +174,8 @@ class Divi_Accessibility {
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'embedded_scripts' );
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'developer_mode' );
 		$this->loader->add_action( 'init', $plugin_public, 'remove_divi_viewport_meta' );
-		$this->loader->add_action( 'init', $plugin_public, 'remove_duplicate_menu_ids' );
 		$this->loader->add_action( 'wp_head', $plugin_public, 'accessible_viewport_meta' );
+		$this->loader->add_filter( 'init', $plugin_public, 'remove_duplicate_menu_ids' );
 
 	}
 

@@ -174,7 +174,7 @@ class Divi_Accessibility_Public {
 	 */
 	public function remove_duplicate_menu_ids() {
 
-		if ( $this->can_load( 'developer_mode' ) ) {
+		if ( $this->can_load( 'fix_duplicate_menu_ids' ) ) {
 			add_filter( 'nav_menu_item_id', '__return_null', 1000 );
 		}
 
