@@ -48,7 +48,7 @@ if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
 	}
 
 	?>
-	outline: <?php echo $outline_color; ?> auto 5px;
+	outline: <?php echo $outline_color; ?> solid 2px;
 	-webkit-transition: none !important;
 	transition: none !important;
 }

@@ -532,6 +532,16 @@ if ( $this->can_load( 'aria_support' ) ) {
 			$('.sub-menu').each(function () {
 				$(this).attr('role', 'menu');
 			});
+
+			/**
+			 * Add aria-label="x".
+			 *
+			 * @divi-module  Fullwidth header, comment-wrap
+			 */
+			$('.et_pb_fullwidth_header').each(function (e) {
+				$(this).attr('aria-label', 'Wide Header' + e);
+			});
+			$('#comment-wrap').attr('aria-label', 'Comments');
 		});
 	})(jQuery);
 	</script>
