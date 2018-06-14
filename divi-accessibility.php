@@ -16,7 +16,7 @@
  * Plugin Name:       Divi Accessibility
  * Plugin URI:        https://wordpress.org/plugins/accessible-divi/
  * Description:       Improve Divi accessibility in accordance with WCAG 2.0 guidelines.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            CampusPress
  * Author URI:        https://campuspress.com
  * License:           GPL-2.0+

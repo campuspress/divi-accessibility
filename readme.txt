@@ -1,5 +1,5 @@
 === Divi Accessibility ===
-Contributors: campuspress, JoeFusco, alexstine, burtrw
+Contributors: campuspress, JoeFusco, alexstine
 Tags: divi, accessibility, accessible, navigation, wcag, a11y, section508, focus, labels, aria
 Requires at least: 3.5.0
 Tested up to: 5.0
@@ -51,6 +51,10 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 
 == Changelog ==
+
+= 1.2.1 =
+* Add better aria attribute support to navigation menus, comment forms, etc.
+* CSS fixes.
 
 = 1.2 =
 * Add option to remove id attribute from list items in navigation menus
