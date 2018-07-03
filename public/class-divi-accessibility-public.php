@@ -155,13 +155,15 @@ class Divi_Accessibility_Public {
 	 */
 	public function can_load( $option ) {
 
-		$settings = $this->settings;
+		$can_load = false;
 
+		$settings = $this->settings;
+		
 		if ( isset( $settings[ $option ] ) && 1 == $settings[ $option ] ) {
-			return true;
+			$can_load = true;
 		}
 
-		return false;
+		return apply_filters( 'divi_accessibility_can_load', $can_load, $option );
 
 	}
 

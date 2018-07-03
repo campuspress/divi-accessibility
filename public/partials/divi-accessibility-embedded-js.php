@@ -25,26 +25,14 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 	(function ($) {
 		$(document).ready(function () {
 
-			var hoverClasses = 'et-hover et-show-dropdown';
-			var currentListItem = '';
-
-			/**
-			 * Update top navigation classes.
-			 */
-			function update_navigation_classes(el) {
-				var currentLink = el.find('a:focus');
-				currentListItem = currentLink.closest('li');
-
-				// check if focused on top level nav item
-				if (el.is(currentListItem.closest('ul')) || el.find('a:focus').length === 0) {
-					el.find('li').removeClass(hoverClasses);
-				}
-
-				// add appropriate divi hover classes if nav item has children
-				if ($(currentListItem).children('ul').length) {
-					currentListItem.addClass(hoverClasses);
-				}
+			if($('.menu-item-has-children').find('a') ) {
+				$('.menu-item-has-children').find('a').not('.sub-menu a').attr('aria-expanded', 'false').addClass('da11y-submenu');
 			}
+
+			$('.da11y-submenu').focus(function() {
+				$(this).attr('aria-expanded', 'true');
+				$('.sub-menu').addClass('da11y-submenu-show');
+			});
 
 			/**
 			 * Generate search form styles.
@@ -116,12 +104,6 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 			}
 
 			$(this).keyup(function () {
-
-				var nav = $('.nav');
-				var menu = $('.menu');
-
-				update_navigation_classes(nav);
-				update_navigation_classes(menu);
 
 				$('.et-search-field').focus(function () {
 					show_search();
@@ -504,34 +486,6 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 * @divi-module  Contact Form
 			 */
 			$('.et-pb-contact-message').attr('role', 'alert');
-
-			/**
-			 * Add role="menubar" to top level unorderd lists.
-			 */
-			$('.nav').each(function () {
-				$(this).attr('role', 'menubar');
-			});
-
-			/**
-			 * Add role="menubar" to top level unorderd lists.
-			 */
-			$('.bottom-nav').each(function () {
-				$(this).attr('role', 'menubar');
-			});
-
-			/**
-			 * Add role="menubar" to top level unorderd lists.
-			 */
-			$('.menu').each(function () {
-				$(this).attr('role', 'menubar');
-			});
-
-			/**
-			 * Add role="menubar" to top level unorderd lists.
-			 */
-			$('.sub-menu').each(function () {
-				$(this).attr('role', 'menu');
-			});
 
 			/**
 			 * Add aria-label="x".

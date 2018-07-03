@@ -52,6 +52,10 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
+= 1.2.2 =
+* Landmark refactoring for navigation.
+* Add better support for submenus.
+
 = 1.2.1 =
 * Add better aria attribute support to navigation menus, comment forms, etc.
 * CSS fixes.
