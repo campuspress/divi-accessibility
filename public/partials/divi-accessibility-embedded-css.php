@@ -31,6 +31,9 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 	visibility: visible !important;
 	opacity: 1 !important; <?php // Necessary for tabbing through the primary top nav - Divi only has .et-hover containing visibility. ?>
 }
+.da11y-submenu-show {
+	visibility: visible !important;
+}
 <?php
 
 } // End if().
