@@ -2,7 +2,7 @@
 Contributors: campuspress, JoeFusco, alexstine
 Tags: divi, accessibility, accessible, navigation, wcag, a11y, section508, focus, labels, aria
 Requires at least: 3.5.0
-Tested up to: 5.1
+Tested up to: 5.0
 Stable tag: trunk
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -51,18 +51,6 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 
 == Changelog ==
-
-= 1.2.5 =
-* Update WordPress compatibility for 5.1.
-* Fix undefined variable.
-
-= 1.2.4 =
-* Fix keyboard navigation with submenus.
-* Fix submenu highlight on mouse hover.
-* Fix CSS warnings.
-
-= 1.2.3 =
-* Submenu item highlighting when mouse moves over links.
 
 = 1.2.2 =
 * Landmark refactoring for navigation.
