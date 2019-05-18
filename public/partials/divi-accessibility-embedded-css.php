@@ -96,14 +96,13 @@ if ( $this->can_load( 'screen_reader_text' ) ) {
 	letter-spacing: normal;
 	line-height: normal;
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-	font-size: 14px;
+	font-size: 1em;
 	font-weight: 600;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 .da11y-screen-reader-text:focus {
 	background: #f1f1f1;
 	color: #00547A;
-	outline: 0;
 	-webkit-box-shadow: 0 0 2px 2px rgba(0,0,0,.6);
 	box-shadow: 0 0 2px 2px rgba(0,0,0,.6);
 	clip: auto !important;

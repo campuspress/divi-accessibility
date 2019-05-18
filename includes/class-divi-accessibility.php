@@ -92,7 +92,7 @@ class Divi_Accessibility {
 
 		$this->da11y         = 'divi_accessibility';
 		$this->da11y_options = 'divi_accessibility_options';
-		$this->version       = '1.2.1';
+		$this->version       = '1.2.5';
 
 		$this->load_dependencies();
 		$this->load_settings();

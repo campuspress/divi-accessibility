@@ -470,6 +470,9 @@ class Divi_Accessibility_Admin {
 		if ( isset( $this->settings[ $name ] ) ) {
 			$checked = $this->settings[ $name ];
 		}
+		else {
+			$checked = 0;
+		}
 
 		?>
 
