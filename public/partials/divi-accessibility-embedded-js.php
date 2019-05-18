@@ -26,12 +26,21 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 		$(document).ready(function () {
 
 			if($('.menu-item-has-children').find('a') ) {
-				$('.menu-item-has-children').find('a').not('.sub-menu a').attr('aria-expanded', 'false').addClass('da11y-submenu');
+				$('.menu-item-has-children').find('a').addClass('da11y-submenu');
+				$('.menu-item-has-children').find('a').not('.sub-menu a').attr('aria-expanded', 'false');
 			}
 
-			$('.da11y-submenu').focus(function() {
-				$(this).attr('aria-expanded', 'true');
-				$('.sub-menu').addClass('da11y-submenu-show');
+			$('.da11y-submenu').on('focus', function() {
+				$(this).not('.sub-menu a').attr('aria-expanded', 'true');
+				$(this).siblings('.sub-menu').addClass('da11y-submenu-show');
+				$(this).trigger('mouseenter');
+			});
+			$('.menu-item-has-children a').on('focusout', function() {
+				if($(this).parent().not('.menu-item-has-children').is(':last-child')) {
+					$(this).parents('.menu-item-has-children').children('.da11y-submenu')
+					.attr('aria-expanded', 'false').trigger('mouseleave')
+					.siblings('.sub-menu').removeClass('da11y-submenu-show');
+				}
 			});
 
 			/**
