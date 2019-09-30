@@ -176,11 +176,12 @@ if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
 			var lastKey = new Date();
 			var lastClick = new Date();
 
+
+
 			/**
 			 * Only apply focus styles for keyboard usage.
 			 */
 			$(this).on('focusin', function (e) {
-				$('.keyboard-outline').removeClass('keyboard-outline');
 
 				var wasByKeyboard = lastClick < lastKey;
 
@@ -188,6 +189,13 @@ if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
 					$(e.target).addClass('keyboard-outline');
 				}
 			});
+			$(this).on('focusout', function (e) { //fixes issue with iFrame in tab order
+				var wasByKeyboard = lastClick < lastKey;
+
+				if (wasByKeyboard) {
+					$('.keyboard-outline').removeClass('keyboard-outline');
+				}
+			})
 			$(this).on('mousedown', function () {
 				lastClick = new Date();
 			});
