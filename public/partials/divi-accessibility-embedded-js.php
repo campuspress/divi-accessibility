@@ -497,6 +497,11 @@ if ( $this->can_load( 'aria_support' ) ) {
 			$('.et-pb-contact-message').attr('role', 'alert');
 
 			/**
+			* Add main role to main-content
+			*/
+			$('#main-content').attr('role', 'main');
+
+			/**
 			 * Add aria-label="x".
 			 *
 			 * @divi-module  Fullwidth header, comment-wrap
@@ -525,6 +530,32 @@ if ( $this->can_load( 'aria_hidden_icons' ) ) {
 			 * Add aria-hidden="true" to all icons
 			 */
 			$('#et_top_search, .et_close_search_field, .et_pb_main_blurb_image').attr('aria-hidden', 'true');
+		});
+	})(jQuery);
+	</script>
+
+<?php
+}
+
+if ( $this->can_load( 'aria_mobile_menu' ) ) {
+
+?>
+
+	<script type="text/javascript">
+	(function ($) {
+		$(document).ready(function () {
+
+			/**
+			 * Mobile menu Aria support.
+			 */
+			$('.mobile_menu_bar_toggle').attr({'role': button, 'tabindex': 0});
+			$('.mobile_menu_bar_toggle').on('click', function() {
+				if($(this).hasClass('a11y-mobile-menu-open') ) {
+					$(this).removeClass('a11y-mobile-menu-open').attr('aria-expanded', 'false');
+				} else {
+					$(this).addClass('a11y-mobile-menu-open').attr('aria-expanded', 'true');
+				}
+			});
 		});
 	})(jQuery);
 	</script>

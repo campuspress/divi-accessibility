@@ -55,6 +55,8 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 = 1.2.5 =
 * Update WordPress compatibility for 5.1.
 * Fix undefined variable.
+* Add main role to main content.
+* Add option to enable mobile menu Aria enhancements.
 
 = 1.2.4 =
 * Fix keyboard navigation with submenus.
