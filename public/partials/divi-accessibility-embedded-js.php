@@ -548,7 +548,7 @@ if ( $this->can_load( 'aria_mobile_menu' ) ) {
 			/**
 			 * Mobile menu Aria support.
 			 */
-			$('.mobile_menu_bar_toggle').attr({'role': button, 'tabindex': 0});
+			$('.mobile_menu_bar_toggle').attr({'role': 'button', 'tabindex': 0});
 			$('.mobile_menu_bar_toggle').on('click', function() {
 				if($(this).hasClass('a11y-mobile-menu-open') ) {
 					$(this).removeClass('a11y-mobile-menu-open').attr('aria-expanded', 'false');
