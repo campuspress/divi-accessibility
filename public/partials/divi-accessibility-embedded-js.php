@@ -530,6 +530,24 @@ if ( $this->can_load( 'aria_hidden_icons' ) ) {
 			 * Add aria-hidden="true" to all icons
 			 */
 			$('#et_top_search, .et_close_search_field, .et_pb_main_blurb_image').attr('aria-hidden', 'true');
+
+            /**
+             * Correct labels on social media icons
+			 */
+			$('.et-social-facebook a.icon span').html("facebook");
+			$('.et-social-twitter a.icon span').html("twitter");
+			$('.et-social-google-plus a.icon span').html("google plus");
+			$('.et-social-pinterest a.icon span').html("pinterest");
+			$('.et-social-linkedin a.icona span').html("linked in");
+			$('.et-social-tumblr a.icon span').html("tumblr");
+            $('.et-social-instagram a.icon span').html("instagram");
+			$('.et-social-skype a.icon span').html("skype");
+			$('.et-social-flikr a.icon span').html("flickr");
+			$('.et-social-myspace a.icon span').html("my space");
+			$('.et-social-dribbble a.icon span').html("dribble");
+			$('.et-social-youtube a.icon span').html("you tube");
+			$('.et-social-vimeo a.icon span').html("vimeo");
+			$('.et-social-rss a.icon span').html("rss");
 		});
 	})(jQuery);
 	</script>
