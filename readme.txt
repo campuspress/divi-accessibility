@@ -2,7 +2,7 @@
 Contributors: campuspress, JoeFusco, alexstine
 Tags: divi, accessibility, accessible, navigation, wcag, a11y, section508, focus, labels, aria
 Requires at least: 3.5.0
-Tested up to: 5.2.3
+Tested up to: 5.3.2
 Stable tag: trunk
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -51,6 +51,10 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 
 == Changelog ==
+
+= 1.2.6 =
+* Social links now have text, thanks to maco.
+* Full jQuery support.
 
 = 1.2.5 =
 * Update WordPress compatibility for 5.2.3.

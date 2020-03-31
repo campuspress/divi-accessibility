@@ -275,6 +275,24 @@ if ( $this->can_load( 'fix_labels' ) ) {
 			$('.et_pb_contact_form').each(function (e) {
 				$(this).find('.et_pb_contact_captcha_question').parent().wrap('<label></label>');
 			});
+
+			/**
+			* Correct labels on social media icons
+			*/
+			$('.et-social-facebook a.icon span').text('Facebook');
+			$('.et-social-twitter a.icon span').text('Twitter');
+			$('.et-social-google-plus a.icon span').text('Google Plus');
+			$('.et-social-pinterest a.icon span').text('Pinterest');
+			$('.et-social-linkedin a.icon span').text('LinkedIn');
+			$('.et-social-tumblr a.icon span').text('Tumblr');
+            $('.et-social-instagram a.icon span').text('Instagram');
+			$('.et-social-skype a.icon span').text('Skype');
+			$('.et-social-flikr a.icon span').text('Flickr');
+			$('.et-social-myspace a.icon span').text('Myspace');
+			$('.et-social-dribbble a.icon span').text('Dribble');
+			$('.et-social-youtube a.icon span').text('YouTube');
+			$('.et-social-vimeo a.icon span').text('Vimeo');
+			$('.et-social-rss a.icon span').text('RSS');
 		});
 	})(jQuery);
 	</script>
@@ -531,23 +549,6 @@ if ( $this->can_load( 'aria_hidden_icons' ) ) {
 			 */
 			$('#et_top_search, .et_close_search_field, .et_pb_main_blurb_image').attr('aria-hidden', 'true');
 
-            /**
-             * Correct labels on social media icons
-			 */
-			$('.et-social-facebook a.icon span').html("facebook");
-			$('.et-social-twitter a.icon span').html("twitter");
-			$('.et-social-google-plus a.icon span').html("google plus");
-			$('.et-social-pinterest a.icon span').html("pinterest");
-			$('.et-social-linkedin a.icona span').html("linked in");
-			$('.et-social-tumblr a.icon span').html("tumblr");
-            $('.et-social-instagram a.icon span').html("instagram");
-			$('.et-social-skype a.icon span').html("skype");
-			$('.et-social-flikr a.icon span').html("flickr");
-			$('.et-social-myspace a.icon span').html("my space");
-			$('.et-social-dribbble a.icon span').html("dribble");
-			$('.et-social-youtube a.icon span').html("you tube");
-			$('.et-social-vimeo a.icon span').html("vimeo");
-			$('.et-social-rss a.icon span').html("rss");
 		});
 	})(jQuery);
 	</script>
