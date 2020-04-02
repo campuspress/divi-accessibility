@@ -22,8 +22,7 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 ?>
 
 	<script type="text/javascript">
-	(function ($) {
-		$(document).ready(function () {
+		jQuery(document).ready(function($) {
 
 			if($('.menu-item-has-children').find('a') ) {
 				$('.menu-item-has-children').find('a').addClass('da11y-submenu');
@@ -35,11 +34,10 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 				$(this).siblings('.sub-menu').addClass('da11y-submenu-show');
 				$(this).trigger('mouseenter');
 			});
+
 			$('.menu-item-has-children a').on('focusout', function() {
 				if($(this).parent().not('.menu-item-has-children').is(':last-child')) {
-					$(this).parents('.menu-item-has-children').children('.da11y-submenu')
-					.attr('aria-expanded', 'false').trigger('mouseleave')
-					.siblings('.sub-menu').removeClass('da11y-submenu-show');
+					$(this).parents('.menu-item-has-children').children('.da11y-submenu').attr('aria-expanded', 'false').trigger('mouseleave').siblings('.sub-menu').removeClass('da11y-submenu-show');
 				}
 			});
 
@@ -49,17 +47,14 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 			 * @since Divi v3.0.23
 			 */
 			function et_set_search_form_css() {
-				var search_container = $('.et_search_form_container');
-				var body = $('body');
-
+				const search_container = $('.et_search_form_container');
+				const body = $('body');
 				if (search_container.hasClass('et_pb_search_visible')) {
-					var header_height = $('#main-header').innerHeight();
-					var menu_width = $('#top-menu').width();
-					var font_size = $('#top-menu li a').css('font-size');
-
+					const header_height = $('#main-header').innerHeight();
+					const menu_width = $('#top-menu').width();
+					const font_size = $('#top-menu li a').css('font-size');
 					search_container.css({ height: header_height + 'px' });
 					search_container.find('input').css('font-size', font_size);
-
 					if (!body.hasClass('et_header_style_left')) {
 						search_container.css('max-width', menu_width + 60);
 					} else {
@@ -74,22 +69,17 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 			 * @since Divi v3.0.23
 			 */
 			function show_search() {
-				var search_container = $('.et_search_form_container');
-
+				const search_container = $('.et_search_form_container');
 				if (search_container.hasClass('et_pb_is_animating')) {
 					return;
 				}
-
 				$('.et_menu_container').removeClass('et_pb_menu_visible et_pb_no_animation').addClass('et_pb_menu_hidden');
 				search_container.removeClass('et_pb_search_form_hidden et_pb_no_animation').addClass('et_pb_search_visible et_pb_is_animating');
-
 				setTimeout(function () {
 					$('.et_menu_container').addClass('et_pb_no_animation');
 					search_container.addClass('et_pb_no_animation').removeClass('et_pb_is_animating');
 				}, 1000);
-
 				search_container.find('input').focus();
-
 				et_set_search_form_css();
 			}
 
@@ -102,10 +92,8 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 				if ($('.et_search_form_container').hasClass('et_pb_is_animating')) {
 					return;
 				}
-
 				$('.et_menu_container').removeClass('et_pb_menu_hidden et_pb_no_animation').addClass('et_pb_menu_visible');
 				$('.et_search_form_container').removeClass('et_pb_search_visible et_pb_no_animation').addClass('et_pb_search_form_hidden et_pb_is_animating');
-
 				setTimeout(function () {
 					$('.et_menu_container').addClass('et_pb_no_animation');
 					$('.et_search_form_container').addClass('et_pb_no_animation').removeClass('et_pb_is_animating');
@@ -113,15 +101,14 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 			}
 
 			$(this).keyup(function () {
-
 				$('.et-search-field').focus(function () {
 					show_search();
 				}).blur(function () {
 					hide_search();
 				});
 			});
+
 		});
-	})(jQuery);
 	</script>
 
 <?php
@@ -133,17 +120,14 @@ if ( $this->can_load( 'skip_navigation_link' ) ) {
 ?>
 
 	<script type="text/javascript">
-	(function ($) {
-		$(document).ready(function () {
+		jQuery(document).ready(function($) {
 
 			/**
 			 * Add skiplink to page.
 			 */
 			function skipTo(target) {
-				var skiplink = '<a href="' + target + '" class="skip-link da11y-screen-reader-text">Skip to content</a>';
-
+				const skiplink = '<a href="' + target + '" class="skip-link da11y-screen-reader-text">Skip to content</a>';
 				$(target).attr('tabindex', -1);
-
 				$('body').prepend(skiplink);
 			}
 			skipTo('#main-content');
@@ -152,13 +136,11 @@ if ( $this->can_load( 'skip_navigation_link' ) ) {
 			 * Use js to focus for internal links.
 			 */
 			$('a[href^="#"]').click(function () {
-				var content = $('#' + $(this).attr('href').slice(1));
-
+				const content = $('#' + $(this).attr('href').slice(1));
 				content.focus();
 			});
 
 		});
-	})(jQuery);
 	</script>
 
 <?php
@@ -170,32 +152,31 @@ if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
 ?>
 
 	<script type="text/javascript">
-	(function ($) {
-		$(document).ready(function () {
+	jQuery(document).ready(function($) {
 
-			var lastKey = new Date();
-			var lastClick = new Date();
+			let lastKey = new Date();
+			let lastClick = new Date();
 
 			/**
 			 * Only apply focus styles for keyboard usage.
 			 */
 			$(this).on('focusin', function (e) {
 				$('.keyboard-outline').removeClass('keyboard-outline');
-
-				var wasByKeyboard = lastClick < lastKey;
-
+				const wasByKeyboard = lastClick < lastKey;
 				if (wasByKeyboard) {
 					$(e.target).addClass('keyboard-outline');
 				}
 			});
+
 			$(this).on('mousedown', function () {
 				lastClick = new Date();
 			});
+
 			$(this).on('keydown', function () {
 				lastKey = new Date();
 			});
+
 		});
-	})(jQuery);
 	</script>
 
 <?php
@@ -205,8 +186,7 @@ if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
 if ( $this->can_load( 'focusable_modules' ) ) { ?>
 
 	<script type="text/javascript">
-	(function ($) {
-		$(document).ready(function () {
+		jQuery(document).ready(function($) {
 
 			/**
 			 * Allow Accordion & Toggle Divi modules to be focusable.
@@ -240,8 +220,8 @@ if ( $this->can_load( 'focusable_modules' ) ) { ?>
 					$('.et_pb_toggle:focus .et_pb_toggle_title').trigger('click');
 				}
 			});
+
 		});
-	})(jQuery);
 	</script>
 
 <?php
@@ -253,8 +233,7 @@ if ( $this->can_load( 'fix_labels' ) ) {
 ?>
 
 	<script type="text/javascript">
-	(function ($) {
-		$(document).ready(function () {
+		jQuery(document).ready(function($) {
 
 			/**
 			 * Add unique ID to search module input with matching label.
@@ -293,8 +272,8 @@ if ( $this->can_load( 'fix_labels' ) ) {
 			$('.et-social-youtube a.icon span').text('YouTube');
 			$('.et-social-vimeo a.icon span').text('Vimeo');
 			$('.et-social-rss a.icon span').text('RSS');
+
 		});
-	})(jQuery);
 	</script>
 
 <?php
@@ -305,8 +284,7 @@ if ( $this->can_load( 'aria_support' ) ) {
 ?>
 
 	<script type="text/javascript">
-	(function ($) {
-		$(document).ready(function () {
+		jQuery(document).ready(function($) {
 
 			/**
 			 * Add role="tabList".
@@ -354,9 +332,11 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 * @divi-module  Tab
 			 */
 			$('.et_pb_tabs_controls li:not(.et_pb_tab_active) a').each(function () {
-				$(this).attr('aria-selected', 'false');
-				$(this).attr('aria-expanded', 'false');
-				$(this).attr('tabindex', -1);
+				$(this).attr({
+					aria-selected: 'false',
+					aria-expanded: 'false',
+					tabindex: -1
+				});
 			});
 
 			/**
@@ -369,9 +349,11 @@ if ( $this->can_load( 'aria_support' ) ) {
 			* @divi-module  Tab
 			 */
 			$('.et_pb_tabs_controls li.et_pb_tab_active a').each(function () {
-				$(this).attr('aria-selected', 'true');
-				$(this).attr('aria-expanded', 'true');
-				$(this).attr('tabindex', 0);
+				$(this).attr({
+					aria-selected: 'true',
+					aria-expanded: 'true',
+					tabindex: 0
+				});
 			});
 
 			/**
@@ -381,8 +363,10 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 * @divi-module  Tab
 			 */
 			$('.et_pb_tabs_controls a').each(function (e) {
-				$(this).attr('id', 'et_pb_tab_control_' + e);
-				$(this).attr('aria-controls', 'et_pb_tab_panel_' + e);
+				$(this).attr({
+					id: 'et_pb_tab_control_' + e,
+					aria-controls: 'et_pb_tab_panel_' + e
+				});
 			});
 
 			/**
@@ -392,8 +376,10 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 * @divi-module  Tab
 			 */
 			$('.et_pb_tab').each(function (e) {
-				$(this).attr('id', 'et_pb_tab_panel_' + e);
-				$(this).attr('aria-labelledby', 'et_pb_tab_control_' + e);
+				$(this).attr({
+					id: 'et_pb_tab_panel_' + e,
+					aria-labelledby: 'et_pb_tab_control_' + e
+				});
 			});
 
 			/**
@@ -430,53 +416,45 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 * @divi-module  Tab
 			 */
 			$('.et_pb_tabs_controls a').on('click', function () {
-				var id = $(this).attr('id');
-				var namespace = $(this).closest('.et_pb_tabs').attr('data-da11y-id'); // Used as a selector to scope changes to current module.
-
+				const id = $(this).attr('id');
+				const namespace = $(this).closest('.et_pb_tabs').attr('data-da11y-id'); // Used as a selector to scope changes to current module.
 				// Reset all tab controls to be aria-selected="false" & aria-expanded="false".
-				$('[data-da11y-id="' + namespace + '"] .et_pb_tabs_controls a')
-					.attr('aria-selected', 'false')
-					.attr('aria-expanded', 'false')
-					.attr('tabindex', -1);
-
+				$('[data-da11y-id="' + namespace + '"] .et_pb_tabs_controls a').attr({
+					aria-selected: 'false',
+					aria-expanded: 'false',
+					tabindex: -1
+				});
 				// Make active tab control aria-selected="true" & aria-expanded="true".
-				$(this)
-					.attr('aria-selected', 'true')
-					.attr('aria-expanded', 'true')
-					.attr('tabindex', 0);
-
+				$(this).attr({
+					aria-selected: 'true',
+					aria-expanded: 'true',
+					tabindex: 0
+				});
 				// Reset all tabs to be aria-hidden="true".
-				$('#' + namespace + ' .et_pb_tab')
-					.attr('aria-hidden', 'true');
-
+				$('#' + namespace + ' .et_pb_tab').attr('aria-hidden', 'true');
 				// Label active tab panel as aria-hidden="false".
-				$('[aria-labelledby="' + id + '"]')
-					.attr('aria-hidden', 'false');
+				$('[aria-labelledby="' + id + '"]').attr('aria-hidden', 'false');
 			});
 
 			// Arrow navigation for tab modules
 			$('.et_pb_tabs_controls a').keyup(function (e) {
-				var namespace = $(this).closest('.et_pb_tabs').attr('data-da11y-id');
-				var module = $('[data-da11y-id="' + namespace + '"]');
-
+				const namespace = $(this).closest('.et_pb_tabs').attr('data-da11y-id');
+				const module = $('[data-da11y-id="' + namespace + '"]');
 				if (e.which === 39) { // Right.
-					var next = module.find('li.et_pb_tab_active').next();
-
+					const next = module.find('li.et_pb_tab_active').next();
 					if (next.length > 0) {
 						next.find('a').trigger('click');
 					} else {
 						module.find('li:first a').trigger('click');
 					}
 				} else if (e.which === 37) { // Left.
-					var next = module.find('li.et_pb_tab_active').prev();
-
+					const next = module.find('li.et_pb_tab_active').prev();
 					if (next.length > 0) {
 						next.find('a').trigger('click');
 					} else {
 						module.find('li:last a').trigger('click');
 					}
 				}
-
 				$('.et_pb_tabs_controls a').removeClass('keyboard-outline');
 				module.find('li.et_pb_tab_active a').addClass('keyboard-outline');
 			});
@@ -528,8 +506,8 @@ if ( $this->can_load( 'aria_support' ) ) {
 				$(this).attr('aria-label', 'Wide Header' + e);
 			});
 			$('#comment-wrap').attr('aria-label', 'Comments');
+
 		});
-	})(jQuery);
 	</script>
 
 <?php
@@ -541,8 +519,7 @@ if ( $this->can_load( 'aria_hidden_icons' ) ) {
 ?>
 
 	<script type="text/javascript">
-	(function ($) {
-		$(document).ready(function () {
+		jQuery(document).ready(function($) {
 
 			/**
 			 * Add aria-hidden="true" to all icons
@@ -550,7 +527,6 @@ if ( $this->can_load( 'aria_hidden_icons' ) ) {
 			$('#et_top_search, .et_close_search_field, .et_pb_main_blurb_image').attr('aria-hidden', 'true');
 
 		});
-	})(jQuery);
 	</script>
 
 <?php
@@ -561,8 +537,7 @@ if ( $this->can_load( 'aria_mobile_menu' ) ) {
 ?>
 
 	<script type="text/javascript">
-	(function ($) {
-		$(document).ready(function () {
+		jQuery(document).ready(function($) {
 
 			/**
 			 * Mobile menu Aria support.
@@ -575,8 +550,8 @@ if ( $this->can_load( 'aria_mobile_menu' ) ) {
 					$(this).addClass('a11y-mobile-menu-open').attr('aria-expanded', 'true');
 				}
 			});
+
 		});
-	})(jQuery);
 	</script>
 
 <?php

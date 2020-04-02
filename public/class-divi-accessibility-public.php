@@ -118,10 +118,8 @@ class Divi_Accessibility_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( 'jquery' );
-
 		if ( true == $this->can_load_tota11y() ) {
-			wp_enqueue_script( 'divi-accessibility-tota11y', plugin_dir_url( __FILE__ ) . 'js/tota11y.min.js', array(), $this->version, false );
+			wp_enqueue_script( 'divi-accessibility-tota11y', plugin_dir_url( __FILE__ ) . 'js/tota11y.min.js', array( 'jquery' ), $this->version, false );
 		}
 
 	}
