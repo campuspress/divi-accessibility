@@ -22,7 +22,7 @@ $options = Divi_Accessibility_Admin::get_options_list();
 
 
 echo '<script type="text/javascript">';
-echo 'console.log("\n%cDivi Accessibility Version ' . $this->version . '", "color: #FFF; background: #974DF3; padding: 3px; font-size: 15px;");';
+echo 'console.log("\n%cDivi Accessibility Version ' . esc_js( $this->version ) . '", "color: #FFF; background: #974DF3; padding: 3px; font-size: 15px;");';
 
 foreach ( $options as $key => $option ) {
 
@@ -35,9 +35,9 @@ foreach ( $options as $key => $option ) {
 	}
 
 	if ( 'outline_color' == $key ) {
-		echo 'console.log("%c' . $output . ' ← ' . $key . '", "color:' . $output . ';");';
+		echo 'console.log("%c' . esc_js( $output ) . ' ← ' . esc_js( $key ) . '", "color:' . esc_js( $output ) . ';");';
 	} else {
-		echo 'console.log("' . $output . ' ←", "' . $key . '");';
+		echo 'console.log("' . esc_js( $output ) . ' ←", "' . esc_js( $key ) . '");';
 	}
 } // End foreach().
 
