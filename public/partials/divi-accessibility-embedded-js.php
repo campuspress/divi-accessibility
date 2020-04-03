@@ -333,8 +333,8 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 */
 			$('.et_pb_tabs_controls li:not(.et_pb_tab_active) a').each(function () {
 				$(this).attr({
-					aria-selected: 'false',
-					aria-expanded: 'false',
+					'aria-selected': 'false',
+					'aria-expanded': 'false',
 					tabindex: -1
 				});
 			});
@@ -350,8 +350,8 @@ if ( $this->can_load( 'aria_support' ) ) {
 			 */
 			$('.et_pb_tabs_controls li.et_pb_tab_active a').each(function () {
 				$(this).attr({
-					aria-selected: 'true',
-					aria-expanded: 'true',
+					'aria-selected': 'true',
+					'aria-expanded': 'true',
 					tabindex: 0
 				});
 			});
@@ -365,7 +365,7 @@ if ( $this->can_load( 'aria_support' ) ) {
 			$('.et_pb_tabs_controls a').each(function (e) {
 				$(this).attr({
 					id: 'et_pb_tab_control_' + e,
-					aria-controls: 'et_pb_tab_panel_' + e
+					'aria-controls': 'et_pb_tab_panel_' + e
 				});
 			});
 
@@ -378,7 +378,7 @@ if ( $this->can_load( 'aria_support' ) ) {
 			$('.et_pb_tab').each(function (e) {
 				$(this).attr({
 					id: 'et_pb_tab_panel_' + e,
-					aria-labelledby: 'et_pb_tab_control_' + e
+					'aria-labelledby': 'et_pb_tab_control_' + e
 				});
 			});
 
@@ -420,14 +420,14 @@ if ( $this->can_load( 'aria_support' ) ) {
 				const namespace = $(this).closest('.et_pb_tabs').attr('data-da11y-id'); // Used as a selector to scope changes to current module.
 				// Reset all tab controls to be aria-selected="false" & aria-expanded="false".
 				$('[data-da11y-id="' + namespace + '"] .et_pb_tabs_controls a').attr({
-					aria-selected: 'false',
-					aria-expanded: 'false',
+					'aria-selected': 'false',
+					'aria-expanded': 'false',
 					tabindex: -1
 				});
 				// Make active tab control aria-selected="true" & aria-expanded="true".
 				$(this).attr({
-					aria-selected: 'true',
-					aria-expanded: 'true',
+					'aria-selected': 'true',
+					'aria-expanded': 'true',
 					tabindex: 0
 				});
 				// Reset all tabs to be aria-hidden="true".
