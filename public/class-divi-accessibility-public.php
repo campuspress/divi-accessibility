@@ -117,6 +117,23 @@ class Divi_Accessibility_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
+		wp_enqueue_script(
+			'divi-accessibility-da11y',
+			plugin_dir_url( __FILE__ ) . 'js/da11y.js',
+			array( 'jquery' ),
+			$this->version, true
+		);
+		if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
+			$default_options = Divi_Accessibility_Admin::get_options_list();
+			$outline_color = $default_options['outline_color'];
+			if ( isset( $this->settings['outline_color'] ) ) {
+				$outline_color = $this->settings['outline_color'];
+			}
+			wp_localize_script( 'divi-accessibility-da11y', '_da11y', array(
+				'outline_color' => esc_js( $outline_color ),
+			) );
+		}
+
 		$scripts = array(
 			'dropdown_keyboard_navigation',
 			'skip_navigation_link',
@@ -129,18 +146,16 @@ class Divi_Accessibility_Public {
 		);
 		foreach ( $scripts as $name ) {
 			wp_add_inline_script(
-				'jquery',
+				'divi-accessibility-da11y',
 				$this->get_resource_data( $name, 'js' )
 			); //@TODO optionally enqueue
 		}
-
 
 		$styles = array(
 			'dropdown_keyboard_navigation',
 			'keyboard_navigation_outline',
 			'screen_reader_text',
 		);
-		
 		foreach ( $styles as $name ) {
 			wp_add_inline_style(
 				reset( wp_styles()->queue ),
@@ -156,7 +171,6 @@ class Divi_Accessibility_Public {
 				$this->version, false
 			);
 		}
-
 	}
 
 	public function get_resource_data( $name, $type ) {

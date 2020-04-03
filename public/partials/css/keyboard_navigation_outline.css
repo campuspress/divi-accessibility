@@ -1,14 +1,6 @@
 .keyboard-outline {
-	<?php
-
-	$outline_color = $default_options['outline_color'];
-
-	if ( isset( $this->settings['outline_color'] ) ) {
-		$outline_color = $this->settings['outline_color'];
-	}
-
-	?>
-	outline: <?php echo esc_attr( $outline_color ); ?> solid 2px;
+	outline-style: solid !important;
+	outline-width: 2px !important;
 	-webkit-transition: none !important;
 	transition: none !important;
 }

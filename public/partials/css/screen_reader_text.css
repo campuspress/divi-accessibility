@@ -2,7 +2,7 @@
 .widget_search .screen-reader-text,
 .et_pb_social_media_follow_network_name,
 .et_pb_search .screen-reader-text {
-	display: block !important; <?php // Reverse Divi adding display: none to screen reader text ?>
+	display: block !important; /* Reverse Divi adding display: none to screen reader text */
 }
 .da11y-screen-reader-text,
 .et_pb_contact_form_label,
@@ -36,5 +36,5 @@
 	text-decoration: none;
 	top: 7px;
 	width: auto;
-	z-index: 1000000; <?php // Above WP toolbar. ?>
+	z-index: 1000000; /* Above WP toolbar. */
 }
