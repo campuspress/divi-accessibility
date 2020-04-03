@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"styles": "postcss public/partials/css --dir public/partials/css --ext 'min.css'"
+    "styles": "postcss 'public/partials/css/!(*.min)*.css' --dir public/partials/css --ext 'min.css'",
+    "scripts": "node compress.js",
+	"build": "npm run scripts && npm run styles"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,8 @@
   "homepage": "https://github.com/campuspress/divi-accessibility#readme",
   "devDependencies": {
     "cssnano": "^4.1.10",
-    "postcss-cli": "^7.1.0"
+    "postcss-cli": "^7.1.0",
+    "shelljs": "^0.8.3",
+    "terser": "^4.6.10"
   }
 }
