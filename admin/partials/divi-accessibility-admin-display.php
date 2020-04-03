@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 	<div class="da11y-settings-information">
 
-		<h2>Divi Accessibility <?php echo $this->version; ?></h2>
+		<h2>Divi Accessibility <?php echo esc_html( $this->version ); ?></h2>
 
 		<a style="display: block;" target="_blank" href="https://campuspress.com">
 

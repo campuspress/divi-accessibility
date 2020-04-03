@@ -496,15 +496,15 @@ class Divi_Accessibility_Admin {
 			<label class="widefat">
 				<input type="checkbox"
 				<?php checked( $checked, 1 ); ?>
-				name="<?php echo $this->da11y_options . '[' . $name . ']'; ?>"
-				id="<?php echo $label_for; ?>"
-				aria-describedby="<?php echo $label_for; ?>-desc"
+				name="<?php echo esc_attr( $this->da11y_options ) . '[' . esc_attr( $name ) . ']'; ?>"
+				id="<?php echo esc_attr( $label_for ); ?>"
+				aria-describedby="<?php echo esc_attr( $label_for ); ?>-desc"
 				value="1" />
-				<?php echo $label_text; ?>
+				<?php echo wp_kses_post( $label_text ); ?>
 			</label>
 
 			<?php if ( '' != $label_subtext ) { ?>
-				<p id="<?php echo $label_for; ?>-desc" class="description">(<em><?php echo $label_subtext; ?></em>)</p>
+				<p id="<?php echo esc_attr( $label_for ); ?>-desc" class="description">(<em><?php echo esc_html( $label_subtext ); ?></em>)</p>
 			<?php } ?>
 
 		</fieldset>
@@ -537,17 +537,17 @@ class Divi_Accessibility_Admin {
 		<fieldset>
 			<label class="widefat">
 				<input type="text"
-				name="<?php echo $this->da11y_options . '[' . $name . ']'; ?>"
-				id="<?php echo $label_for; ?>"
-				value="<?php echo $color; ?>"
+				name="<?php echo esc_attr( $this->da11y_options ) . '[' . esc_attr( $name ) . ']'; ?>"
+				id="<?php echo esc_attr( $label_for ); ?>"
+				value="<?php echo esc_attr( $color ); ?>"
 				class="da11y-color-picker"
-				data-default-color="<?php echo $default_color; ?>"
+				data-default-color="<?php echo esc_attr( $default_color ); ?>"
 				<?php checked( $checked, 1 ); ?>
 				/>
 			</label>
 
 			<?php if ( '' != $label_subtext ) { ?>
-				<p class="description">(<em><?php echo $label_subtext; ?></em>)</p>
+				<p class="description">(<em><?php echo esc_html( $label_subtext ); ?></em>)</p>
 			<?php } ?>
 
 		</fieldset>
