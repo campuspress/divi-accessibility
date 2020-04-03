@@ -215,7 +215,8 @@ class Divi_Accessibility_Public {
 
 	public function get_resource_path( $name, $type ) {
 		$root = trailingslashit( DA11Y_PATH ) . 'public/partials/' . $type;
-		$minified = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG
+		$debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		$minified = ! empty( $this->settings['developer_mode'] ) || $debug
 			? ''
 			: '.min';
 		return trailingslashit( $root ) .
@@ -226,7 +227,8 @@ class Divi_Accessibility_Public {
 
 	public function get_resource_url( $name, $type ) {
 		$root = trailingslashit( plugin_dir_url( __FILE__ ) ) . 'partials/' . $type;
-		$minified = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG
+		$debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		$minified = ! empty( $this->settings['developer_mode'] ) || $debug
 			? ''
 			: '.min';
 		return trailingslashit( $root ) .
