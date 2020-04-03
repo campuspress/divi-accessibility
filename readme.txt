@@ -1,5 +1,5 @@
 === Divi Accessibility ===
-Contributors: campuspress, JoeFusco, alexstine
+Contributors: campuspress, JoeFusco, alexstine, vebailovity
 Tags: divi, accessibility, accessible, navigation, wcag, a11y, section508, focus, labels, aria
 Requires at least: 3.5.0
 Tested up to: 5.3.2
@@ -55,6 +55,7 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 = 1.2.6 =
 * Social links now have text, thanks to maco.
 * Full jQuery support.
+* Fix sanitization across the plugin.
 
 = 1.2.5 =
 * Update WordPress compatibility for 5.2.3.
