@@ -145,10 +145,10 @@ class Divi_Accessibility_Public {
 			'aria_mobile_menu',
 		);
 		foreach ( $scripts as $name ) {
-			wp_add_inline_script(
+			$this->add_resource(
 				'divi-accessibility-da11y',
-				$this->get_resource_data( $name, 'js' )
-			); //@TODO optionally enqueue
+				$name, 'js'
+			);
 		}
 
 		$styles = array(
@@ -157,10 +157,10 @@ class Divi_Accessibility_Public {
 			'screen_reader_text',
 		);
 		foreach ( $styles as $name ) {
-			wp_add_inline_style(
+			$this->add_resource(
 				reset( wp_styles()->queue ),
-				$this->get_resource_data( $name, 'css' )
-			); //@TODO optionally enqueue
+				$name, 'css'
+			);
 		}
 
 		if ( true == $this->can_load_tota11y() ) {
@@ -173,18 +173,64 @@ class Divi_Accessibility_Public {
 		}
 	}
 
+	public function add_resource( $hook, $name, $type ) {
+		$enqueue = apply_filters( 'divi_accessibility_enqueue', true );
+		if ( 'js' === $type ) {
+			if ( apply_filters( 'divi_accessibility_enqueue_type', $enqueue, $type ) ) {
+				return wp_enqueue_script(
+					"{$hook}-{$name}",
+					$this->get_resource_url( $name, $type ),
+					array( $hook ),
+					$this->version,
+					true
+				);
+			} else {
+				return wp_add_inline_script(
+					$hook,
+					$this->get_resource_data( $name, $type )
+				);
+			}
+		}
+		if ( 'css' === $type ) {
+			if ( apply_filters( 'divi_accessibility_enqueue_type', $enqueue, $type ) ) {
+				return wp_enqueue_style(
+					"{$hook}-{$name}",
+					$this->get_resource_url( $name, $type ),
+					array( $hook ),
+					$this->version
+				);
+			} else {
+				return wp_add_inline_style(
+					$hook,
+					$this->get_resource_data( $name, $type )
+				);
+			}
+		}
+	}
+
 	public function get_resource_data( $name, $type ) {
 		if ( ! $this->can_load( $name ) ) {
 			return false;
 		}
-		$file = $this->get_resource_name( $name, $type );
+		$file = $this->get_resource_path( $name, $type );
 		return is_readable( $file )
 			? file_get_contents( $file )
 			: false;
 	}
 
-	public function get_resource_name( $name, $type ) {
+	public function get_resource_path( $name, $type ) {
 		$root = trailingslashit( DA11Y_PATH ) . 'public/partials/' . $type;
+		$minified = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG
+			? ''
+			: '.min';
+		return trailingslashit( $root ) .
+			sanitize_file_name( $name ) .
+			$minified .
+			'.' . $type;
+	}
+
+	public function get_resource_url( $name, $type ) {
+		$root = trailingslashit( plugin_dir_url( __FILE__ ) ) . 'partials/' . $type;
 		$minified = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG
 			? ''
 			: '.min';
