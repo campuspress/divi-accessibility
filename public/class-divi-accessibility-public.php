@@ -90,7 +90,7 @@ class Divi_Accessibility_Public {
 	 * @since    1.0.0
 	 */
 	public function embedded_scripts() {
-		include_once 'partials/divi-accessibility-embedded-js.php';
+		//include_once 'partials/divi-accessibility-embedded-js.php';
 	}
 
 	/**
@@ -117,11 +117,50 @@ class Divi_Accessibility_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		if ( true == $this->can_load_tota11y() ) {
-			wp_enqueue_script( 'divi-accessibility-tota11y', plugin_dir_url( __FILE__ ) . 'js/tota11y.min.js', array( 'jquery' ), $this->version, false );
+		$all = array(
+			'dropdown_keyboard_navigation',
+			'skip_navigation_link',
+			'keyboard_navigation_outline',
+			'focusable_modules',
+			'fix_labels',
+			'aria_support',
+			'aria_hidden_icons',
+			'aria_mobile_menu',
+		);
+		foreach ( $all as $part ) {
+			if ( ! $this->can_load( $part ) ) {
+				continue;
+			}
+			$file = $this->get_resource_name( $part, 'js' );
+			$data = file_exists( $file )
+				? file_get_contents( $file )
+				: false;
+			if ( empty( $data ) ) {
+				continue;
+			}
+			wp_add_inline_script( 'jquery', $data );
 		}
 
+		if ( true == $this->can_load_tota11y() ) {
+			wp_enqueue_script(
+				'divi-accessibility-tota11y',
+				plugin_dir_url( __FILE__ ) . 'js/tota11y.min.js',
+				array( 'jquery' ),
+				$this->version, false
+			);
+		}
+
+	}
+
+	public function get_resource_name( $name, $type ) {
+		$root = trailingslashit( DA11Y_PATH ) . 'public/partials/js/';
+		$minified = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG
+			? ''
+			: '.min';
+		return trailingslashit( $root ) .
+			sanitize_file_name( $name ) .
+			$minified .
+			'.' . $type;
 	}
 
 	/**
