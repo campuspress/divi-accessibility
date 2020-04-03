@@ -1,0 +1,30 @@
+.keyboard-outline {
+	<?php
+
+	$outline_color = $default_options['outline_color'];
+
+	if ( isset( $this->settings['outline_color'] ) ) {
+		$outline_color = $this->settings['outline_color'];
+	}
+
+	?>
+	outline: <?php echo esc_attr( $outline_color ); ?> solid 2px;
+	-webkit-transition: none !important;
+	transition: none !important;
+}
+button:active.keyboard-outline,
+button:focus.keyboard-outline,
+input:active.keyboard-outline,
+input:focus.keyboard-outline,
+a[role="tab"].keyboard-outline {
+	outline-offset: -5px;
+}
+.et-search-form input:focus.keyboard-outline {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.et_pb_tab {
+	-webkit-animation: none !important;
+	animation: none !important;
+}
+

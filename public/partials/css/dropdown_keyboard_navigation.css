@@ -1,0 +1,9 @@
+.nav li.et-hover > ul,
+.menu li.et-hover > ul {
+	visibility: visible !important;
+	opacity: 1 !important; <?php // Necessary for tabbing through the primary top nav - Divi only has .et-hover containing visibility. ?>
+}
+.da11y-submenu-show {
+	visibility: visible !important;
+}
+

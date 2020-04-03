@@ -81,7 +81,7 @@ class Divi_Accessibility_Public {
 	 * @since    1.0.0
 	 */
 	public function embedded_styles() {
-		include_once 'partials/divi-accessibility-embedded-css.php';
+		//include_once 'partials/divi-accessibility-embedded-css.php';
 	}
 
 	/**
@@ -117,7 +117,7 @@ class Divi_Accessibility_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		$all = array(
+		$scripts = array(
 			'dropdown_keyboard_navigation',
 			'skip_navigation_link',
 			'keyboard_navigation_outline',
@@ -127,18 +127,25 @@ class Divi_Accessibility_Public {
 			'aria_hidden_icons',
 			'aria_mobile_menu',
 		);
-		foreach ( $all as $part ) {
-			if ( ! $this->can_load( $part ) ) {
-				continue;
-			}
-			$file = $this->get_resource_name( $part, 'js' );
-			$data = file_exists( $file )
-				? file_get_contents( $file )
-				: false;
-			if ( empty( $data ) ) {
-				continue;
-			}
-			wp_add_inline_script( 'jquery', $data );
+		foreach ( $scripts as $name ) {
+			wp_add_inline_script(
+				'jquery',
+				$this->get_resource_data( $name, 'js' )
+			); //@TODO optionally enqueue
+		}
+
+
+		$styles = array(
+			'dropdown_keyboard_navigation',
+			'keyboard_navigation_outline',
+			'screen_reader_text',
+		);
+		
+		foreach ( $styles as $name ) {
+			wp_add_inline_style(
+				reset( wp_styles()->queue ),
+				$this->get_resource_data( $name, 'css' )
+			); //@TODO optionally enqueue
 		}
 
 		if ( true == $this->can_load_tota11y() ) {
@@ -152,8 +159,18 @@ class Divi_Accessibility_Public {
 
 	}
 
+	public function get_resource_data( $name, $type ) {
+		if ( ! $this->can_load( $name ) ) {
+			return false;
+		}
+		$file = $this->get_resource_name( $name, $type );
+		return is_readable( $file )
+			? file_get_contents( $file )
+			: false;
+	}
+
 	public function get_resource_name( $name, $type ) {
-		$root = trailingslashit( DA11Y_PATH ) . 'public/partials/js/';
+		$root = trailingslashit( DA11Y_PATH ) . 'public/partials/' . $type;
 		$minified = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG
 			? ''
 			: '.min';

@@ -169,9 +169,9 @@ class Divi_Accessibility {
 
 		$plugin_public = new Divi_Accessibility_Public( $this->da11y, $this->da11y_options, $this->version, $this->settings );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_action( 'wp_head', $plugin_public, 'embedded_styles' );
-		$this->loader->add_action( 'wp_footer', $plugin_public, 'embedded_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts', PHP_INT_MAX );
+		//$this->loader->add_action( 'wp_head', $plugin_public, 'embedded_styles' );
+		//$this->loader->add_action( 'wp_footer', $plugin_public, 'embedded_scripts' );
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'developer_mode' );
 		$this->loader->add_action( 'init', $plugin_public, 'remove_divi_viewport_meta' );
 		$this->loader->add_action( 'wp_head', $plugin_public, 'accessible_viewport_meta' );
