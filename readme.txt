@@ -54,7 +54,6 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 = 1.2.6 =
 * Social links now have text, thanks to maco.
-* Full jQuery support.
 * Fix sanitization across the plugin.
 
 = 1.2.5 =
