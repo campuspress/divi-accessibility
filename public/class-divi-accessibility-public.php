@@ -145,10 +145,7 @@ class Divi_Accessibility_Public {
 			'aria_mobile_menu',
 		);
 		foreach ( $scripts as $name ) {
-			$this->add_resource(
-				'divi-accessibility-da11y',
-				$name, 'js'
-			);
+			$this->add_resource( 'divi-accessibility-da11y', $name, 'js' );
 		}
 
 		$styles = array(
@@ -156,11 +153,9 @@ class Divi_Accessibility_Public {
 			'keyboard_navigation_outline',
 			'screen_reader_text',
 		);
+		$root_style = reset( wp_styles()->queue );
 		foreach ( $styles as $name ) {
-			$this->add_resource(
-				reset( wp_styles()->queue ),
-				$name, 'css'
-			);
+			$this->add_resource( $root_style, $name, 'css' );
 		}
 
 		if ( true == $this->can_load_tota11y() ) {
