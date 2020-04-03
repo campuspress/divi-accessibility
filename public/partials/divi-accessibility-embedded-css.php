@@ -51,7 +51,7 @@ if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
 	}
 
 	?>
-	outline: <?php echo $outline_color; ?> solid 2px;
+	outline: <?php echo esc_attr( $outline_color ); ?> solid 2px;
 	-webkit-transition: none !important;
 	transition: none !important;
 }
