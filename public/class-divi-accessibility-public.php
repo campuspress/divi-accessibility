@@ -111,10 +111,6 @@ class Divi_Accessibility_Public {
 		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
 	}
 
-	public function is_in_developer_mode() {
-		return current_user_can( 'manage_options' ) && $this->can_load( 'developer_mode' );
-	}
-
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
@@ -185,38 +181,35 @@ class Divi_Accessibility_Public {
 		if ( ! $this->can_load( $name ) ) {
 			return false;
 		}
-		$enqueue = apply_filters( 'divi_accessibility_enqueue', true );
 		if ( 'js' === $type ) {
-			if ( apply_filters( 'divi_accessibility_enqueue_type', $enqueue, $type ) ) {
-				return wp_enqueue_script(
+			return $this->will_enqueue( $type )
+				? wp_enqueue_script(
 					"{$hook}-{$name}",
 					$this->get_resource_url( $name, $type ),
 					array( $hook ),
 					$this->version,
 					true
-				);
-			} else {
-				return wp_add_inline_script(
-					$hook,
-					$this->get_resource_data( $name, $type )
-				);
-			}
+				)
+				: wp_add_inline_script( $hook, $this->get_resource_data( $name, $type ) );
 		}
 		if ( 'css' === $type ) {
-			if ( apply_filters( 'divi_accessibility_enqueue_type', $enqueue, $type ) ) {
-				return wp_enqueue_style(
+			return $this->will_enqueue( $type )
+				?  wp_enqueue_style(
 					"{$hook}-{$name}",
 					$this->get_resource_url( $name, $type ),
 					array( $hook ),
 					$this->version
-				);
-			} else {
-				return wp_add_inline_style(
-					$hook,
-					$this->get_resource_data( $name, $type )
-				);
-			}
+				)
+				: wp_add_inline_style( $hook, $this->get_resource_data( $name, $type ) );
 		}
+		return false;
+	}
+
+	public function will_enqueue( $type ) {
+		$enqueue = apply_filters( 'divi_accessibility_enqueue', false );
+		return apply_filters(
+			'divi_accessibility_enqueue_type', $enqueue, $type
+		);
 	}
 
 	public function get_resource_data( $name, $type ) {
@@ -229,7 +222,7 @@ class Divi_Accessibility_Public {
 	public function get_resource_path( $name, $type ) {
 		$root = trailingslashit( DA11Y_PATH ) . 'public/partials/' . $type;
 		$debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
-		$minified = ! empty( $this->settings['developer_mode'] ) || $debug
+		$minified = $this->is_in_developer_mode() || $debug
 			? ''
 			: '.min';
 		return trailingslashit( $root ) .
@@ -241,13 +234,25 @@ class Divi_Accessibility_Public {
 	public function get_resource_url( $name, $type ) {
 		$root = trailingslashit( plugin_dir_url( __FILE__ ) ) . 'partials/' . $type;
 		$debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
-		$minified = ! empty( $this->settings['developer_mode'] ) || $debug
+		$minified = $this->is_in_developer_mode() || $debug
 			? ''
 			: '.min';
 		return trailingslashit( $root ) .
 			sanitize_file_name( $name ) .
 			$minified .
 			'.' . $type;
+	}
+
+	/**
+	 * Whether or not we're in developer mode
+	 *
+	 * @return bool
+	 */
+	public function is_in_developer_mode() {
+		return apply_filters(
+			'divi_accessibility_developer_mode',
+			current_user_can( 'manage_options' ) && $this->can_load( 'developer_mode' )
+		);
 	}
 
 	/**
@@ -305,22 +310,4 @@ class Divi_Accessibility_Public {
 		}
 
 	}
-
-	/**
-	 * Log plugin info to console for admin users.
-	 *
-	 * @since     1.0.0
-	 */
-	public function developer_mode() {
-
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
-		}
-
-		if ( $this->can_load( 'developer_mode' ) ) {
-			include_once 'partials/divi-accessibility-developer-mode.php';
-		}
-
-	}
-
 }
