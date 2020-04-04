@@ -16,6 +16,8 @@
 		} );
 		console.log( "😎\n\n" );
 	};
-	setTimeout( out );
+	if ( Object.keys( opts.options || {} ).length ) {
+		setTimeout( out );
+	}
 } )();
 
