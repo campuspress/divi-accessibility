@@ -296,14 +296,14 @@ class Divi_Accessibility_Admin {
 		// Screen reader text.
 		add_settings_field(
 			$this->da11y . '_screen_reader_text',
-			'Screen reader text',
+			__( 'Screen reader text', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'screen_reader_text',
 				'label_for'     => $this->da11y . '_screen_reader_text',
-				'label_text'    => 'Add plugin screen reader class used on certain labels &amp; reverses Divi incorrectly applying <code>display: none;</code> on its own screen reader classes.',
+				'label_text'    => __( 'Add plugin screen reader class used on certain labels &amp; reverses Divi incorrectly applying <code>display: none;</code> on its own screen reader classes.', 'divi-accessibility' ),
 				'label_subtext' => '',
 			)
 		);
@@ -311,58 +311,58 @@ class Divi_Accessibility_Admin {
 		// Skip navigation link.
 		add_settings_field(
 			$this->da11y . '_skip_navigation_link',
-			'Skip navigation link',
+			__( 'Skip navigation link', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'skip_navigation_link',
 				'label_for'     => $this->da11y . '_skip_navigation_link',
-				'label_text'    => 'Allow user to skip over Divi navigation when using keyboard and go straight to content.',
-				'label_subtext' => 'Requires screen reader text option to be on',
+				'label_text'    => __( 'Allow user to skip over Divi navigation when using keyboard and go straight to content.', 'divi-accessibility' ),
+				'label_subtext' => __( 'Requires screen reader text option to be on', 'divi-accessibility' ),
 			)
 		);
 
 		// Aria-hidden on icons.
 		add_settings_field(
 			$this->da11y . '_aria_hidden_icons',
-			'Hide icons',
+			__( 'Hide icons', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'aria_hidden_icons',
 				'label_for'     => $this->da11y . '_aria_hidden_icons',
-				'label_text'    => 'Hide all icons to screen readers so text is read normally.',
-				'label_subtext' => 'This may not work for all icons',
+				'label_text'    => __( 'Hide all icons to screen readers so text is read normally.', 'divi-accessibility' ),
+				'label_subtext' => __( 'This may not work for all icons', 'divi-accessibility' ),
 			)
 		);
 
 		// Aria support for mobile menu.
 		add_settings_field(
 			$this->da11y . '_aria_mobile_menu',
-			'Aria support for mobile menu',
+			__( 'Aria support for mobile menu', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'aria_mobile_menu',
 				'label_for'     => $this->da11y . '_aria_mobile_menu',
-				'label_text'    => 'Apply Aria attributes to the mobile (burger) menu to make it accessible.',
+				'label_text'    => __( 'Apply Aria attributes to the mobile (burger) menu to make it accessible.', 'divi-accessibility' ),
 			)
 		);
 
 		// Fix duplicate menu ids.
 		add_settings_field(
 			$this->da11y . '_fix_duplicate_menu_ids',
-			'Fix duplicate menu ids',
+			__( 'Fix duplicate menu ids', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'fix_duplicate_menu_ids',
 				'label_for'     => $this->da11y . '_fix_duplicate_menu_ids',
-				'label_text'    => 'Because Divi uses the same menu twice (Once for the primary menu and again for the mobile menu), the unique ID\'s are duplicated causing validation issues. This option prevents WordPress from adding a unique ID to the menu list items.',
+				'label_text'    => __( 'Because Divi uses the same menu twice (Once for the primary menu and again for the mobile menu), the unique ID\'s are duplicated causing validation issues. This option prevents WordPress from adding a unique ID to the menu list items.', 'divi-accessibility' ),
 				'label_subtext' => '',
 			)
 		);
@@ -370,7 +370,7 @@ class Divi_Accessibility_Admin {
 		// Add tools section.
 		add_settings_section(
 			$tools_section,
-			'Tools',
+			__( 'Tools', 'divi-accessibility' ),
 			null, // Don't use section callback.
 			$this->da11y
 		);
@@ -378,30 +378,30 @@ class Divi_Accessibility_Admin {
 		// Tota11y.
 		add_settings_field(
 			$this->da11y . '_tota11y',
-			'Tota11y',
+			__( 'Tota11y', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$tools_section,
 			array(
 				'name'          => 'tota11y',
 				'label_for'     => $this->da11y . '_tota11y',
-				'label_text'    => 'Add a small button to the bottom corner of site to visualize how your site performs with assistive technology.',
-				'label_subtext' => 'Admin users only',
+				'label_text'    => __( 'Add a small button to the bottom corner of site to visualize how your site performs with assistive technology.', 'divi-accessibility' ),
+				'label_subtext' => __( 'Admin users only', 'divi-accessibility' ),
 			)
 		);
 
 		// Developer mode.
 		add_settings_field(
 			$this->da11y . '_developer_mode',
-			'Developer mode',
+			__( 'Developer mode', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$tools_section,
 			array(
 				'name'          => 'developer_mode',
 				'label_for'     => $this->da11y . '_developer_mode',
-				'label_text'    => 'Log plugin info to console.',
-				'label_subtext' => 'Admin users only',
+				'label_text'    => __( 'Log plugin info to console.', 'divi-accessibility' ),
+				'label_subtext' => __( 'Admin users only', 'divi-accessibility' ),
 			)
 		);
 
