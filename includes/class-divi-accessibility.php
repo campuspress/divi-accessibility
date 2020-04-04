@@ -188,6 +188,15 @@ class Divi_Accessibility {
 	 */
 	public function run() {
 		$this->loader->run();
+		add_action( 'init', array( $this, 'load_translations' ) );
+	}
+
+	public function load_translations() {
+		load_plugin_textdomain(
+			'divi-accessibility',
+			false, 
+			trailingslashit( DA11Y_PATH, 'languages' )
+		);
 	}
 
 	/**
