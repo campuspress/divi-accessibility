@@ -20,7 +20,8 @@
     "lint": "npm run lint-scripts && npm run lint-styles",
     "build": "npm run scripts && npm run styles",
     "watch": "npm-watch",
-    "package": "node scripts/package.js"
+	"i18n": "wpi18n makepot",
+    "package": "npm run build && node scripts/package.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "csslint": "^1.0.5",
     "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
+    "node-wp-i18n": "^1.2.3",
     "npm-watch": "^0.6.0",
     "postcss-cli": "^7.1.0",
     "shelljs": "^0.8.3",
