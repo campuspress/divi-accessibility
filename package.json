@@ -14,8 +14,10 @@
   },
   "scripts": {
     "styles": "postcss 'public/partials/css/!(*.min)*.css' --dir public/partials/css --ext 'min.css'",
-	"lint-styles": "csslint public/partials/css --ignore=order-alphabetical,important --quiet",
+    "lint-styles": "csslint public/partials/css --ignore=order-alphabetical,important --quiet",
     "scripts": "node compress.js",
+	"lint-scripts": "eslint public/partials/js",
+	"lint": "npm run lint-scripts && npm run lint-styles",
     "build": "npm run scripts && npm run styles",
     "watch": "npm-watch"
   },
@@ -33,6 +35,7 @@
   "devDependencies": {
     "csslint": "^1.0.5",
     "cssnano": "^4.1.10",
+    "eslint": "^6.8.0",
     "npm-watch": "^0.6.0",
     "postcss-cli": "^7.1.0",
     "shelljs": "^0.8.3",
