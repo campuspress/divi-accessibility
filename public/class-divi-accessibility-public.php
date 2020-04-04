@@ -20,6 +20,9 @@
  */
 class Divi_Accessibility_Public {
 
+	const TYPE_JS  = 'js';
+	const TYPE_CSS = 'css';
+
 	/**
 	 * The ID of this plugin.
 	 *
@@ -93,11 +96,9 @@ class Divi_Accessibility_Public {
 	}
 
 	/**
-	 * Register the JavaScript for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
+	 * Enqueue and bootstrap the public facing resources.
 	 */
-	public function enqueue_scripts() {
+	public function setup_scripts_and_styles() {
 		wp_enqueue_script(
 			'divi-accessibility-da11y',
 			plugin_dir_url( __FILE__ ) . 'js/da11y.js',
@@ -112,12 +113,12 @@ class Divi_Accessibility_Public {
 		);
 
 		foreach ( $this->get_script_resources() as $name ) {
-			$this->add_resource( 'divi-accessibility-da11y', $name, 'js' );
+			$this->add_resource( 'divi-accessibility-da11y', $name, self::TYPE_JS );
 		}
 
 		$root_style = reset( wp_styles()->queue );
 		foreach ( $this->get_style_resources() as $name ) {
-			$this->add_resource( $root_style, $name, 'css' );
+			$this->add_resource( $root_style, $name, self::TYPE_CSS );
 		}
 
 		if ( true == $this->can_load_tota11y() ) {
@@ -200,7 +201,7 @@ class Divi_Accessibility_Public {
 		if ( ! $this->can_load( $name ) ) {
 			return false;
 		}
-		if ( 'js' === $type ) {
+		if ( self::TYPE_JS === $type ) {
 			return $this->will_enqueue( $type )
 				? wp_enqueue_script(
 					"{$hook}-{$name}",
@@ -211,7 +212,7 @@ class Divi_Accessibility_Public {
 				)
 				: wp_add_inline_script( $hook, $this->get_resource_data( $name, $type ) );
 		}
-		if ( 'css' === $type ) {
+		if ( self::TYPE_CSS === $type ) {
 			return $this->will_enqueue( $type )
 				? wp_enqueue_style(
 					"{$hook}-{$name}",
@@ -249,6 +250,9 @@ class Divi_Accessibility_Public {
 	 * @return string
 	 */
 	public function get_resource_data( $name, $type ) {
+		if ( ! $this->is_known_type( $type ) ) {
+			return '';
+		}
 		$file = $this->get_resource_path( $name, $type );
 		return is_readable( $file )
 			? file_get_contents( $file )
@@ -264,6 +268,9 @@ class Divi_Accessibility_Public {
 	 * @return string
 	 */
 	public function get_resource_path( $name, $type ) {
+		if ( ! $this->is_known_type( $type ) ) {
+			return '';
+		}
 		$root     = trailingslashit( DA11Y_PATH ) . 'public/partials/' . $type;
 		$debug    = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
 		$minified = $this->is_in_developer_mode() || $debug
@@ -284,6 +291,9 @@ class Divi_Accessibility_Public {
 	 * @return string
 	 */
 	public function get_resource_url( $name, $type ) {
+		if ( ! $this->is_known_type( $type ) ) {
+			return '';
+		}
 		$root     = trailingslashit( plugin_dir_url( __FILE__ ) ) . 'partials/' . $type;
 		$debug    = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
 		$minified = $this->is_in_developer_mode() || $debug
@@ -293,6 +303,21 @@ class Divi_Accessibility_Public {
 			sanitize_file_name( $name ) .
 			$minified .
 			'.' . $type;
+	}
+
+	/**
+	 * Whether or not we're dealing with a known resource type.
+	 *
+	 * @param string $type Resource type.
+	 *
+	 * @return bool
+	 */
+	public function is_known_type( $type ) {
+		return in_array(
+			$type,
+			array( self::TYPE_JS, self::TYPE_CSS ),
+			true
+		);
 	}
 
 	/**

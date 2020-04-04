@@ -172,7 +172,7 @@ class Divi_Accessibility {
 		$this->loader->add_action(
 			'wp_enqueue_scripts',
 			$plugin_public,
-			'enqueue_scripts',
+			'setup_scripts_and_styles',
 			PHP_INT_MAX
 		);
 		$this->loader->add_action( 'init', $plugin_public, 'remove_divi_viewport_meta' );
