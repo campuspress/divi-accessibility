@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
 	 *
 	 * @divi-module  Contact
 	 */
-	$('.et_pb_contact_form').each(function (e) {
+	$('.et_pb_contact_form').each(function () {
 		$(this).find('.et_pb_contact_captcha_question').parent().wrap('<label></label>');
 	});
 
