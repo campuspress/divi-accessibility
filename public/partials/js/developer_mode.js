@@ -11,7 +11,7 @@
 				: opts.options[ opt ];
 			const meta = 'outline_color' === opt
 				? `color: ${ opts.options[opt] };`
-				: null;
+				: '';
 			console.log( `${ option } ← ${ opt }`, meta );
 		} );
 		console.log( "😎\n\n" );

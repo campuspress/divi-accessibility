@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "description": "![divi-accessibility](https://cloud.githubusercontent.com/assets/6676674/26787287/72430f40-49d7-11e7-89ec-a5bf07eb0f97.png)",
   "main": "index.js",
+  "watch": {
+	  "build": {
+		  "patterns": [ "public/partials/css", "public/partials/js" ],
+		  "extensions": "css,js",
+		  "ignore": "*.min.*"
+	  }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "styles": "postcss 'public/partials/css/!(*.min)*.css' --dir public/partials/css --ext 'min.css'",
     "scripts": "node compress.js",
-	"build": "npm run scripts && npm run styles"
+    "build": "npm run scripts && npm run styles",
+	"watch": "npm-watch"
   },
   "repository": {
     "type": "git",
@@ -22,6 +30,7 @@
   "homepage": "https://github.com/campuspress/divi-accessibility#readme",
   "devDependencies": {
     "cssnano": "^4.1.10",
+    "npm-watch": "^0.6.0",
     "postcss-cli": "^7.1.0",
     "shelljs": "^0.8.3",
     "terser": "^4.6.10"
