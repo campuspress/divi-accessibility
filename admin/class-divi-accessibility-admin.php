@@ -206,14 +206,14 @@ class Divi_Accessibility_Admin {
 		// ARIA support.
 		add_settings_field(
 			$this->da11y . '_aria_support',
-			'ARIA support',
+			__( 'ARIA support', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'aria_support',
 				'label_for'     => $this->da11y . '_aria_support',
-				'label_text'    => 'Add appropriate ARIA attributes across Divi elements &amp; modules.',
+				'label_text'    => __( 'Add appropriate ARIA attributes across Divi elements &amp; modules.', 'divi-accessibility' ),
 				'label_subtext' => '',
 			)
 		);
@@ -221,14 +221,14 @@ class Divi_Accessibility_Admin {
 		// Dropdown keyboard navigation.
 		add_settings_field(
 			$this->da11y . '_dropdown_keyboard_navigation',
-			'Dropdown keyboard navigation',
+			__( 'Dropdown keyboard navigation', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'dropdown_keyboard_navigation',
 				'label_for'     => $this->da11y . '_dropdown_keyboard_navigation',
-				'label_text'    => 'Allow easier navigation of Divi dropdown menus with the keyboard.',
+				'label_text'    => __( 'Allow easier navigation of Divi dropdown menus with the keyboard.', 'divi-accessibility' ),
 				'label_subtext' => '',
 			)
 		);
@@ -236,14 +236,14 @@ class Divi_Accessibility_Admin {
 		// Fix labels.
 		add_settings_field(
 			$this->da11y . '_fix_labels',
-			'Fix labels',
+			__( 'Fix labels', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'fix_labels',
 				'label_for'     => $this->da11y . '_fix_labels',
-				'label_text'    => 'Fix missing labels &amp; incorrect or missing assignments to their corresponding inputs.',
+				'label_text'    => __( 'Fix missing labels &amp; incorrect or missing assignments to their corresponding inputs.', 'divi-accessibility' ),
 				'label_subtext' => '',
 			)
 		);
@@ -251,14 +251,14 @@ class Divi_Accessibility_Admin {
 		// Focusable modules.
 		add_settings_field(
 			$this->da11y . '_focusable_modules',
-			'Focusable modules',
+			__( 'Focusable modules', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'focusable_modules',
 				'label_for'     => $this->da11y . '_focusable_modules',
-				'label_text'    => 'Allow Divi modules such as <em>Toggle</em> &amp; <em>Accordion</em> to be focusable with keyboard navigation. Hitting enter will open/close when focused.',
+				'label_text'    => __( 'Allow Divi modules such as <em>Toggle</em> &amp; <em>Accordion</em> to be focusable with keyboard navigation. Hitting enter will open/close when focused.', 'divi-accessibility' ),
 				'label_subtext' => '',
 			)
 		);
@@ -266,14 +266,14 @@ class Divi_Accessibility_Admin {
 		// Keyboard navigation outline.
 		add_settings_field(
 			$this->da11y . '_keyboard_navigation_outline',
-			'Keyboard navigation outline',
+			__( 'Keyboard navigation outline', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_checkbox_cb' ),
 			$this->da11y,
 			$general_section,
 			array(
 				'name'          => 'keyboard_navigation_outline',
 				'label_for'     => $this->da11y . '_keyboard_navigation_outline',
-				'label_text'    => 'Add an outline to focused elements when navigation with the keyboard.',
+				'label_text'    => __( 'Add an outline to focused elements when navigation with the keyboard.', 'divi-accessibility' ),
 				'label_subtext' => '',
 			)
 		);
@@ -281,7 +281,7 @@ class Divi_Accessibility_Admin {
 		// Outline color.
 		add_settings_field(
 			$this->da11y . '_outline_color',
-			'Outline color',
+			__( 'Outline color', 'divi-accessibility' ),
 			array( $this, 'divi_accessibility_color_picker_cb' ),
 			$this->da11y,
 			$general_section,
@@ -289,7 +289,7 @@ class Divi_Accessibility_Admin {
 				'name'          => 'outline_color',
 				'label_for'     => $this->da11y . '_outline_color',
 				'label_text'    => '',
-				'label_subtext' => 'Keyboard navigation outline',
+				'label_subtext' => __( 'Keyboard navigation outline', 'divi-accessibility' ),
 			)
 		);
 
