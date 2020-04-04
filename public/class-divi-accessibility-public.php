@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -61,10 +60,10 @@ class Divi_Accessibility_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param    string    $da11y          The name of this plugin.
-	 * @param    string    $da11y_options  The prefix for the plugin's options.
-	 * @param    string    $version        The version of this plugin.
-	 * @param    array     $settings       The plugin settings.
+	 * @param    string $da11y          The name of this plugin.
+	 * @param    string $da11y_options  The prefix for the plugin's options.
+	 * @param    string $version        The version of this plugin.
+	 * @param    array  $settings       The plugin settings.
 	 */
 	public function __construct( $da11y, $da11y_options, $version, $settings ) {
 
@@ -73,24 +72,6 @@ class Divi_Accessibility_Public {
 		$this->version       = $version;
 		$this->settings      = $settings;
 
-	}
-
-	/**
-	 * Render the gemerated CSS for the plugin.
-	 *
-	 * @since    1.0.0
-	 */
-	public function embedded_styles() {
-		//include_once 'partials/divi-accessibility-embedded-css.php';
-	}
-
-	/**
-	 * Render the gemerated JS for the plugin.
-	 *
-	 * @since    1.0.0
-	 */
-	public function embedded_scripts() {
-		//include_once 'partials/divi-accessibility-embedded-js.php';
 	}
 
 	/**
@@ -121,15 +102,48 @@ class Divi_Accessibility_Public {
 			'divi-accessibility-da11y',
 			plugin_dir_url( __FILE__ ) . 'js/da11y.js',
 			array( 'jquery' ),
-			$this->version, true
+			$this->version,
+			true
 		);
-		$data = array(
+		wp_localize_script(
+			'divi-accessibility-da11y',
+			'_da11y',
+			$this->get_public_data()
+		);
+
+		foreach ( $this->get_script_resources() as $name ) {
+			$this->add_resource( 'divi-accessibility-da11y', $name, 'js' );
+		}
+
+		$root_style = reset( wp_styles()->queue );
+		foreach ( $this->get_style_resources() as $name ) {
+			$this->add_resource( $root_style, $name, 'css' );
+		}
+
+		if ( true == $this->can_load_tota11y() ) {
+			wp_enqueue_script(
+				'divi-accessibility-tota11y',
+				plugin_dir_url( __FILE__ ) . 'js/tota11y.min.js',
+				array( 'jquery' ),
+				$this->version,
+				false
+			);
+		}
+	}
+
+	/**
+	 * Gets public data exposed to enqueued JS resources
+	 *
+	 * @return array
+	 */
+	public function get_public_data() {
+		$data     = array(
 			'version' => $this->version,
 		);
-		$default_options = Divi_Accessibility_Admin::get_options_list();
+		$defaults = Divi_Accessibility_Admin::get_options_list();
 		if ( $this->is_in_developer_mode() ) {
 			$data['options'] = array_merge(
-				$default_options,
+				$defaults,
 				(array) $this->settings
 			);
 		}
@@ -137,12 +151,19 @@ class Divi_Accessibility_Public {
 			$data['active_outline_color'] = esc_js(
 				isset( $this->settings['outline_color'] )
 					? $this->settings['outline_color']
-					: $default_options['outline_color']
+					: $defaults['outline_color']
 			);
 		}
-		wp_localize_script( 'divi-accessibility-da11y', '_da11y', $data );
+		return $data;
+	}
 
-		$scripts = array(
+	/**
+	 * Returns a list of all known script resources
+	 *
+	 * @return array
+	 */
+	public function get_script_resources() {
+		return array(
 			'dropdown_keyboard_navigation',
 			'skip_navigation_link',
 			'keyboard_navigation_outline',
@@ -153,30 +174,28 @@ class Divi_Accessibility_Public {
 			'aria_mobile_menu',
 			'developer_mode',
 		);
-		foreach ( $scripts as $name ) {
-			$this->add_resource( 'divi-accessibility-da11y', $name, 'js' );
-		}
+	}
 
-		$styles = array(
+	/**
+	 * Returns a list of all known style resources
+	 *
+	 * @return array
+	 */
+	public function get_style_resources() {
+		return array(
 			'dropdown_keyboard_navigation',
 			'keyboard_navigation_outline',
 			'screen_reader_text',
 		);
-		$root_style = reset( wp_styles()->queue );
-		foreach ( $styles as $name ) {
-			$this->add_resource( $root_style, $name, 'css' );
-		}
-
-		if ( true == $this->can_load_tota11y() ) {
-			wp_enqueue_script(
-				'divi-accessibility-tota11y',
-				plugin_dir_url( __FILE__ ) . 'js/tota11y.min.js',
-				array( 'jquery' ),
-				$this->version, false
-			);
-		}
 	}
 
+	/**
+	 * Adds resource
+	 *
+	 * @param string $hook Resource parent.
+	 * @param string $name Resource name.
+	 * @param string $type Resource type (css|js).
+	 */
 	public function add_resource( $hook, $name, $type ) {
 		if ( ! $this->can_load( $name ) ) {
 			return false;
@@ -194,7 +213,7 @@ class Divi_Accessibility_Public {
 		}
 		if ( 'css' === $type ) {
 			return $this->will_enqueue( $type )
-				?  wp_enqueue_style(
+				? wp_enqueue_style(
 					"{$hook}-{$name}",
 					$this->get_resource_url( $name, $type ),
 					array( $hook ),
@@ -205,13 +224,30 @@ class Divi_Accessibility_Public {
 		return false;
 	}
 
+	/**
+	 * Whether resources of certain type are to be be enqueued or loaded inline
+	 *
+	 * @param string $type Resource type (css|js).
+	 *
+	 * @return bool
+	 */
 	public function will_enqueue( $type ) {
 		$enqueue = apply_filters( 'divi_accessibility_enqueue', false );
 		return apply_filters(
-			'divi_accessibility_enqueue_type', $enqueue, $type
+			'divi_accessibility_enqueue_type',
+			$enqueue,
+			$type
 		);
 	}
 
+	/**
+	 * Load resource contents
+	 *
+	 * @param string $name Resource name.
+	 * @param string $type Resource type (css|js).
+	 *
+	 * @return string
+	 */
 	public function get_resource_data( $name, $type ) {
 		$file = $this->get_resource_path( $name, $type );
 		return is_readable( $file )
@@ -219,9 +255,17 @@ class Divi_Accessibility_Public {
 			: '';
 	}
 
+	/**
+	 * Gets resource FS path
+	 *
+	 * @param string $name Resource name.
+	 * @param string $type Resource type (css|js).
+	 *
+	 * @return string
+	 */
 	public function get_resource_path( $name, $type ) {
-		$root = trailingslashit( DA11Y_PATH ) . 'public/partials/' . $type;
-		$debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		$root     = trailingslashit( DA11Y_PATH ) . 'public/partials/' . $type;
+		$debug    = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
 		$minified = $this->is_in_developer_mode() || $debug
 			? ''
 			: '.min';
@@ -231,9 +275,17 @@ class Divi_Accessibility_Public {
 			'.' . $type;
 	}
 
+	/**
+	 * Gets resource URL
+	 *
+	 * @param string $name Resource name.
+	 * @param string $type Resource type (css|js).
+	 *
+	 * @return string
+	 */
 	public function get_resource_url( $name, $type ) {
-		$root = trailingslashit( plugin_dir_url( __FILE__ ) ) . 'partials/' . $type;
-		$debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+		$root     = trailingslashit( plugin_dir_url( __FILE__ ) ) . 'partials/' . $type;
+		$debug    = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
 		$minified = $this->is_in_developer_mode() || $debug
 			? ''
 			: '.min';
@@ -279,7 +331,7 @@ class Divi_Accessibility_Public {
 	 * Check if we have permission to load a checkbox option.
 	 *
 	 * @since     1.0.0
-	 * @param     string     $option
+	 * @param     string $option
 	 * @return    boolean
 	 */
 	public function can_load( $option ) {
@@ -287,7 +339,7 @@ class Divi_Accessibility_Public {
 		$can_load = false;
 
 		$settings = $this->settings;
-		
+
 		if ( isset( $settings[ $option ] ) && 1 == $settings[ $option ] ) {
 			$can_load = true;
 		}
