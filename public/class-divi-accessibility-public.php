@@ -169,6 +169,9 @@ class Divi_Accessibility_Public {
 	}
 
 	public function add_resource( $hook, $name, $type ) {
+		if ( ! $this->can_load( $name ) ) {
+			return false;
+		}
 		$enqueue = apply_filters( 'divi_accessibility_enqueue', true );
 		if ( 'js' === $type ) {
 			if ( apply_filters( 'divi_accessibility_enqueue_type', $enqueue, $type ) ) {
@@ -204,13 +207,10 @@ class Divi_Accessibility_Public {
 	}
 
 	public function get_resource_data( $name, $type ) {
-		if ( ! $this->can_load( $name ) ) {
-			return false;
-		}
 		$file = $this->get_resource_path( $name, $type );
 		return is_readable( $file )
 			? file_get_contents( $file )
-			: false;
+			: '';
 	}
 
 	public function get_resource_path( $name, $type ) {
