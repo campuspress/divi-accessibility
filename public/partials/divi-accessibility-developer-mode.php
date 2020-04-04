@@ -16,30 +16,3 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
-
-require_once DA11Y_PATH . 'admin/class-divi-accessibility-admin.php';
-$options = Divi_Accessibility_Admin::get_options_list();
-
-
-echo '<script type="text/javascript">';
-echo 'console.log("\n%cDivi Accessibility Version ' . esc_js( $this->version ) . '", "color: #FFF; background: #974DF3; padding: 3px; font-size: 15px;");';
-
-foreach ( $options as $key => $option ) {
-
-	if ( 'outline_color' == $key ) {
-		$output = $this->settings['outline_color'];
-	} elseif ( $this->can_load( $key ) ) {
-		$output = 1;
-	} else {
-		$output = 0;
-	}
-
-	if ( 'outline_color' == $key ) {
-		echo 'console.log("%c' . esc_js( $output ) . ' ← ' . esc_js( $key ) . '", "color:' . esc_js( $output ) . ';");';
-	} else {
-		echo 'console.log("' . esc_js( $output ) . ' ←", "' . esc_js( $key ) . '");';
-	}
-} // End foreach().
-
-echo 'console.log("😎\n\n");';
-echo '</script>';

@@ -111,6 +111,10 @@ class Divi_Accessibility_Public {
 		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
 	}
 
+	public function is_in_developer_mode() {
+		return current_user_can( 'manage_options' ) && $this->can_load( 'developer_mode' );
+	}
+
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
@@ -123,16 +127,24 @@ class Divi_Accessibility_Public {
 			array( 'jquery' ),
 			$this->version, true
 		);
-		if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
-			$default_options = Divi_Accessibility_Admin::get_options_list();
-			$outline_color = $default_options['outline_color'];
-			if ( isset( $this->settings['outline_color'] ) ) {
-				$outline_color = $this->settings['outline_color'];
-			}
-			wp_localize_script( 'divi-accessibility-da11y', '_da11y', array(
-				'outline_color' => esc_js( $outline_color ),
-			) );
+		$data = array(
+			'version' => $this->version,
+		);
+		$default_options = Divi_Accessibility_Admin::get_options_list();
+		if ( $this->is_in_developer_mode() ) {
+			$data['options'] = array_merge(
+				$default_options,
+				(array) $this->settings
+			);
 		}
+		if ( $this->can_load( 'keyboard_navigation_outline' ) ) {
+			$data['active_outline_color'] = esc_js(
+				isset( $this->settings['outline_color'] )
+					? $this->settings['outline_color']
+					: $default_options['outline_color']
+			);
+		}
+		wp_localize_script( 'divi-accessibility-da11y', '_da11y', $data );
 
 		$scripts = array(
 			'dropdown_keyboard_navigation',
@@ -143,6 +155,7 @@ class Divi_Accessibility_Public {
 			'aria_support',
 			'aria_hidden_icons',
 			'aria_mobile_menu',
+			'developer_mode',
 		);
 		foreach ( $scripts as $name ) {
 			$this->add_resource( 'divi-accessibility-da11y', $name, 'js' );
