@@ -34,16 +34,6 @@ if ( ! defined( 'WPINC' ) ) {
 class Divi_Accessibility {
 
 	/**
-	 * The loader that's responsible for maintaining and registering all hooks that power
-	 * the plugin.
-	 *
-	 * @since     1.0.0
-	 * @access    protected
-	 * @var       Divi_Accessibility_Loader
-	 */
-	protected $loader;
-
-	/**
 	 * The unique identifier of this plugin.
 	 *
 	 * @since     1.0.0
@@ -106,23 +96,13 @@ class Divi_Accessibility {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Divi_Accessibility_Loader. Orchestrates the hooks of the plugin.
 	 * - Divi_Accessibility_Admin. Defines all hooks for the admin area.
 	 * - Divi_Accessibility_Public. Defines all hooks for the public side of the site.
-	 *
-	 * Create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
 	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
 	private function load_dependencies() {
-
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-divi-accessibility-loader.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -134,8 +114,6 @@ class Divi_Accessibility {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-divi-accessibility-public.php';
-
-		$this->loader = new Divi_Accessibility_Loader();
 
 	}
 
@@ -150,11 +128,11 @@ class Divi_Accessibility {
 
 		$plugin_admin = new Divi_Accessibility_Admin( $this->da11y, $this->da11y_options, $this->version, $this->settings );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_page', 900 );
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
-		$this->loader->add_filter( 'plugin_action_links_' . DA11Y_FILE, $plugin_admin, 'link_settings' );
+		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
+		add_action( 'admin_menu', array( $plugin_admin, 'add_options_page' ), 900 );
+		add_action( 'admin_init', array( $plugin_admin, 'register_settings' ) );
+		add_filter( 'plugin_action_links_' . DA11Y_FILE, array( $plugin_admin, 'link_settings' ) );
 
 	}
 
@@ -169,25 +147,21 @@ class Divi_Accessibility {
 
 		$plugin_public = new Divi_Accessibility_Public( $this->da11y, $this->da11y_options, $this->version, $this->settings );
 
-		$this->loader->add_action(
+		add_action(
 			'wp_enqueue_scripts',
-			$plugin_public,
-			'setup_scripts_and_styles',
+			array( $plugin_public, 'setup_scripts_and_styles' ),
 			PHP_INT_MAX
 		);
-		$this->loader->add_action( 'init', $plugin_public, 'remove_divi_viewport_meta' );
-		$this->loader->add_action( 'wp_head', $plugin_public, 'accessible_viewport_meta' );
-		$this->loader->add_filter( 'init', $plugin_public, 'remove_duplicate_menu_ids' );
+		add_action( 'init', array( $plugin_public, 'remove_divi_viewport_meta' ) );
+		add_action( 'wp_head', array( $plugin_public, 'accessible_viewport_meta' ) );
+		add_filter( 'init', array( $plugin_public, 'remove_duplicate_menu_ids' ) );
 
 	}
 
 	/**
-	 * Run the loader to execute all of the hooks with WordPress.
-	 *
-	 * @since    1.0.0
+	 * Shared actions.
 	 */
 	public function run() {
-		$this->loader->run();
 		add_action( 'init', array( $this, 'load_translations' ) );
 	}
 
