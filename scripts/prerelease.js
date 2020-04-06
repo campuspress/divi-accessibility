@@ -1,4 +1,5 @@
 const compare = require( 'compare-versions' );
+const sh = require( 'shelljs' );
 const fs = require( 'fs' );
 const rs = require( 'readline-sync' );
 
@@ -17,6 +18,9 @@ const defineRx = new RegExp(
 	`define\\(\\s*[\'"]DA11Y_VERSION\[\'"],\\s*?[\'"](${ versionRxSrc })[\'"]\\s*\\);`
 );
 
+let finalVersion;
+let filesUpdated = false;
+
 fs.readFileSync('divi-accessibility.php', 'utf8').split( /\n/ ).forEach( line => {
 	if ( ( line || '' ).match( fileHeaderRx ) ) {
 		versionCandidates.fileheader = line.match( fileHeaderRx )[1];
@@ -27,7 +31,6 @@ fs.readFileSync('divi-accessibility.php', 'utf8').split( /\n/ ).forEach( line =>
 	mainFile.push( line );
 } );
 
-let finalVersion;
 if ( process.env.npm_config_release ) {
 	finalVersion = process.env.npm_config_release;
 } else {
@@ -39,6 +42,7 @@ if ( process.env.npm_config_release ) {
 
 if ( compare( '' + versionCandidates.package, '' + finalVersion ) !== 0 ) {
 	const updatePkg = () => {
+		filesUpdated = true;
 		console.log( `\t- Updating package.json version` );
 		pkg.version = finalVersion;
 		fs.writeFileSync( 'package.json', JSON.stringify( pkg, null, 2 ) );
@@ -56,6 +60,7 @@ if (
 	compare( '' + versionCandidates.define, '' + finalVersion ) !== 0
 ) {
 	const updateMain = () => {
+		filesUpdated = true;
 		console.log( `\t- Updating main file versions` );
 		fs.writeFileSync( 'divi-accessibility.php', mainFile.map( line => {
 			if ( ( line || '' ).match( fileHeaderRx ) ) {
@@ -75,4 +80,12 @@ if (
 			`\t* Versions in divi-accessibility.php is different. Update? [y/N]`
 		).match( /y/i ) && updateMain();
 	}
+}
+
+if ( ! sh.grep( `^= ${ finalVersion } =$`, 'readme.txt' ).split( /\n/ )[0] ) {
+	console.log( `[WARN] Unable to find changelog entry in readme.txt matching the new version number (${ finalVersion })` );
+}
+
+if ( filesUpdated ) {
+	console.log( `[NOTE] Some files were updated to match your new version number (${ finalVersion }), make sure to commit and tag the changes if needed` );
 }
