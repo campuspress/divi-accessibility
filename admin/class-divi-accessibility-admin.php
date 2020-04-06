@@ -480,7 +480,7 @@ class Divi_Accessibility_Admin {
 		$name          = $arg['name'];
 		$label_for     = $arg['label_for'];
 		$label_text    = $arg['label_text'];
-		$label_subtext = $arg['label_subtext'];
+		$label_subtext = ! empty( $arg['label_subtext'] ) ? $arg['label_subtext'] : '';
 
 		if ( isset( $this->settings[ $name ] ) ) {
 			$checked = $this->settings[ $name ];
@@ -542,7 +542,6 @@ class Divi_Accessibility_Admin {
 				value="<?php echo esc_attr( $color ); ?>"
 				class="da11y-color-picker"
 				data-default-color="<?php echo esc_attr( $default_color ); ?>"
-				<?php checked( $checked, 1 ); ?>
 				/>
 			</label>
 
