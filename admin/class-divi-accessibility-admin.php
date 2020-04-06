@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -66,10 +65,10 @@ class Divi_Accessibility_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param    string    $da11y          The name of this plugin.
-	 * @param    string    $da11y_options  The prefix for the plugin's options.
-	 * @param    string    $version        The version of this plugin.
-	 * @param    array     $settings       The plugin settings.
+	 * @param    string $da11y          The name of this plugin.
+	 * @param    string $da11y_options  The prefix for the plugin's options.
+	 * @param    string $version        The version of this plugin.
+	 * @param    array  $settings       The plugin settings.
 	 */
 	public function __construct( $da11y, $da11y_options, $version, $settings ) {
 
@@ -83,6 +82,8 @@ class Divi_Accessibility_Admin {
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
+	 * @param string $hook Page hook.
+	 *
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles( $hook ) {
@@ -92,6 +93,8 @@ class Divi_Accessibility_Admin {
 
 	/**
 	 * Register the scripts for the admin area.
+	 *
+	 * @param string $hook Page hook.
 	 *
 	 * @since    1.0.0
 	 */
@@ -121,8 +124,8 @@ class Divi_Accessibility_Admin {
 	 * Adds a link to the plugin settings page.
 	 *
 	 * @since     1.0.0
-	 * @param     array    $links    The current array of links
-	 * @return    array              The modified array of links
+	 * @param     array $links    The current array of links.
+	 * @return    array              The modified array of links.
 	 */
 	public function link_settings( $links ) {
 
@@ -169,7 +172,7 @@ class Divi_Accessibility_Admin {
 			'screen_reader_text'           => 1,
 			'skip_navigation_link'         => 1,
 			'aria_hidden_icons'            => 1,
-			'aria_mobile_menu'            => 1,
+			'aria_mobile_menu'             => 1,
 			'fix_duplicate_menu_ids'       => 1,
 			'tota11y'                      => 0,
 			'developer_mode'               => 0,
@@ -346,9 +349,9 @@ class Divi_Accessibility_Admin {
 			$this->da11y,
 			$general_section,
 			array(
-				'name'          => 'aria_mobile_menu',
-				'label_for'     => $this->da11y . '_aria_mobile_menu',
-				'label_text'    => __( 'Apply Aria attributes to the mobile (burger) menu to make it accessible.', 'divi-accessibility' ),
+				'name'       => 'aria_mobile_menu',
+				'label_for'  => $this->da11y . '_aria_mobile_menu',
+				'label_text' => __( 'Apply Aria attributes to the mobile (burger) menu to make it accessible.', 'divi-accessibility' ),
 			)
 		);
 
@@ -411,7 +414,7 @@ class Divi_Accessibility_Admin {
 	 * Validate options before saving to DB.
 	 *
 	 * @since    1.0.0
-	 * @param    array    $input
+	 * @param    array $input Input.
 	 */
 	public function divi_accessibility_validate_options( $input ) {
 
@@ -435,7 +438,6 @@ class Divi_Accessibility_Admin {
 					$valid_options[ $key ] = $default_color;
 
 				}
-
 			} elseif ( isset( $input[ $key ] ) && 1 == $input[ $key ] ) {
 
 				$valid_options[ $key ] = 1;
@@ -455,6 +457,7 @@ class Divi_Accessibility_Admin {
 	 * Check if value is a valid HEX color.
 	 *
 	 * @since    1.0.0
+	 * @param string $value Value to check.
 	 * @return   boolean
 	 */
 	public function is_valid_color( $value ) {
@@ -473,7 +476,7 @@ class Divi_Accessibility_Admin {
 	 * Callback for checkbox settings.
 	 *
 	 * @since    1.0.0
-	 * @param    array    $arg
+	 * @param    array $arg Input args.
 	 */
 	public function divi_accessibility_checkbox_cb( $arg ) {
 
@@ -484,8 +487,7 @@ class Divi_Accessibility_Admin {
 
 		if ( isset( $this->settings[ $name ] ) ) {
 			$checked = $this->settings[ $name ];
-		}
-		else {
+		} else {
 			$checked = 0;
 		}
 
@@ -516,7 +518,7 @@ class Divi_Accessibility_Admin {
 	 * Callback for color picker settings.
 	 *
 	 * @since    1.0.0
-	 * @param    array    $arg
+	 * @param    array $arg Input args.
 	 */
 	public function divi_accessibility_color_picker_cb( $arg ) {
 

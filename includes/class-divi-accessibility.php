@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -165,10 +164,13 @@ class Divi_Accessibility {
 		add_action( 'init', array( $this, 'load_translations' ) );
 	}
 
+	/**
+	 * Load the language translations.
+	 */
 	public function load_translations() {
 		load_plugin_textdomain(
 			'divi-accessibility',
-			false, 
+			false,
 			trailingslashit( DA11Y_PATH, 'languages' )
 		);
 	}
