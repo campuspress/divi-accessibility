@@ -29,6 +29,10 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+if ( ! defined( 'DA11Y_VERSION' ) ) {
+	define( 'DA11Y_VERSION', '1.2.6' );
+}
+
 // Used for referring to the plugin file or basename.
 if ( ! defined( 'DA11Y_FILE' ) ) {
 	define( 'DA11Y_FILE', plugin_basename( __FILE__ ) );
@@ -68,7 +72,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-divi-accessibility.php';
  */
 function run_divi_accessibility() {
 
-	$plugin = new Divi_Accessibility();
+	$plugin = new Divi_Accessibility( DA11Y_VERSION );
 	$plugin->run();
 
 }
