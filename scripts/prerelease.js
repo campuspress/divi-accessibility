@@ -1,11 +1,14 @@
 const compare = require( 'compare-versions' );
 const fs = require( 'fs' );
+const rs = require( 'readline-sync' );
 
 const pkg = require( '../package.json' );
 const mainFile = [];
 const versionCandidates = {
 	package: pkg.version,
 };
+
+const assumeYes = !! process.env.npm_config_yes;
 
 const versionRxSrc = '\\d+\\.(?:\\d\.)+\\d(?:(?:-alpha|-beta)-\\d+)?';
 const versionRx = new RegExp( versionRxSrc );
@@ -35,25 +38,41 @@ if ( process.env.npm_config_release ) {
 }
 
 if ( compare( '' + versionCandidates.package, '' + finalVersion ) !== 0 ) {
-	console.log( `\t- Updating package.json version` );
-	pkg.version = finalVersion;
-	fs.writeFileSync( 'package.json', JSON.stringify( pkg, null, 2 ) );
+	const updatePkg = () => {
+		console.log( `\t- Updating package.json version` );
+		pkg.version = finalVersion;
+		fs.writeFileSync( 'package.json', JSON.stringify( pkg, null, 2 ) );
+	};
+	if ( assumeYes ) updatePkg();
+	else {
+		rs.question(
+			`\t* Version in package.json (${ pkg.version }) is different. Update? [y/N]`
+		).match( /y/i ) && updatePkg();
+	}
 }
 
 if (
 	compare( '' + versionCandidates.fileheader, '' + finalVersion ) !== 0 ||
 	compare( '' + versionCandidates.define, '' + finalVersion ) !== 0
 ) {
-	console.log( `\t- Updating main file versions` );
-	fs.writeFileSync( 'divi-accessibility.php', mainFile.map( line => {
-		if ( ( line || '' ).match( fileHeaderRx ) ) {
-			return line.replace( versionRx, finalVersion );
-		}
-		if ( ( line || '' ).match( defineRx ) ) {
-			return line.replace( versionRx, finalVersion );
-		}
+	const updateMain = () => {
+		console.log( `\t- Updating main file versions` );
+		fs.writeFileSync( 'divi-accessibility.php', mainFile.map( line => {
+			if ( ( line || '' ).match( fileHeaderRx ) ) {
+				return line.replace( versionRx, finalVersion );
+			}
+			if ( ( line || '' ).match( defineRx ) ) {
+				return line.replace( versionRx, finalVersion );
+			}
 
-		return line;
+			return line;
 
-	} ).join( "\n" ) );
+		} ).join( "\n" ) );
+	};
+	if ( assumeYes ) updateMain();
+	else {
+		rs.question(
+			`\t* Versions in divi-accessibility.php is different. Update? [y/N]`
+		).match( /y/i ) && updateMain();
+	}
 }

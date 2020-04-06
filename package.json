@@ -45,6 +45,7 @@
     "node-wp-i18n": "^1.2.3",
     "npm-watch": "^0.6.0",
     "postcss-cli": "^7.1.0",
+    "readline-sync": "^1.4.10",
     "shelljs": "^0.8.3",
     "terser": "^4.6.10"
   }
