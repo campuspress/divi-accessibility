@@ -52,8 +52,9 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
-= 2.0 =
+= 2.0.0 =
 * Refactor inline styles and scripts to work with a packaging system.
+* Add default aria-label to mobile menu.
 
 = 1.2.6 =
 * Social links now have text, thanks to maco.
