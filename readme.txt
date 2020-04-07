@@ -54,7 +54,8 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 = 1.2.6 =
 * Social links now have text, thanks to maco.
-* Full jQuery support.
+* Fix sanitization across the plugin.
+* Fix default aria-expanded state on closed mobile menu.
 
 = 1.2.5 =
 * Update WordPress compatibility for 5.2.3.
