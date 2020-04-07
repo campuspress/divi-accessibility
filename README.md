@@ -22,7 +22,7 @@ A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 
 Development
 -----------
 
-The working js/css snippets are, by default, included minifed. They can be forcefully included in their full expanded state by enabling the developer mode option in plugin settings. They will also respect the WP core `SCRIPTS_DEBUG` define value.
+The working js/css snippets are, by default, included minified. They can be forcefully included in their full expanded state by enabling the developer mode option in plugin settings. They will also respect the WP core `SCRIPTS_DEBUG` define value.
 
 To check js/css snippets for any errors, run the dedicated `npm run lint` script.
 
@@ -32,7 +32,7 @@ While working on snippets, it may be beneficial to have them automatically re-bu
 
 To package an intermediate (throwaway) plugin zip archive for testing, use the `npm run package` script.
 
-To actually build a releaseable package, use the `npm run release [-y] [--version=X.X.X]`. This will lint everything, build the languages catalog file, and normalize version numbers accross files (main php file, package.json and readme.txt). It will then rebuild everything and produce a versioned zip archive.
+To actually build a releaseable package, use the `npm run release [-y] [--version=X.X.X]`. This will lint everything, build the languages catalog file, and normalize version numbers across files (main php file, package.json and readme.txt). It will then rebuild everything and produce a versioned zip archive.
 
 The release version can either be supplied via a command line parameter (`--version=x.x.x`), or it will be inferred from the files that might be containing the version number (main php file and package.json). If the version number is being inferred, the highest one is the version that will be used.
 
