@@ -13,9 +13,9 @@
     }
   },
   "scripts": {
-    "styles": "postcss 'public/partials/css/!(*.min)*.css' --dir public/partials/css --ext 'min.css'",
+    "styles": "node scripts/compress-css.js",
     "lint-styles": "csslint public/partials/css --ignore=order-alphabetical,important --quiet",
-    "scripts": "node scripts/compress.js",
+    "scripts": "node scripts/compress-js.js",
     "lint-scripts": "eslint public/partials/js",
     "lint": "npm run lint-scripts && npm run lint-styles",
     "build": "npm run scripts && npm run styles",
