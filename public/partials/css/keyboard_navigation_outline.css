@@ -20,3 +20,14 @@ a[role="tab"].keyboard-outline {
 	animation: none !important;
 }
 
+.et_pb_scroll_top.et-visible:focus {
+	outline-width: 2px;
+	outline-style: solid;
+	outline-color: Highlight;
+}
+@media (-webkit-min-device-pixel-ratio:0) {
+	.et_pb_scroll_top.et-visible:focus {
+		outline-color: -webkit-focus-ring-color;
+		outline-style: auto;
+	}
+}
