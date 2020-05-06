@@ -12,6 +12,16 @@ jQuery(document).ready(function($) {
 	});
 
 	/**
+	 * Add unique ID to search module input with matching label.
+	 *
+	 * @divi-module  Search
+	 */
+	$('.et_pb_s').each(function (e) {
+		$(this).attr('id', 'et_pb_s_module_input_' + e);
+		$('#et_pb_s_module_input_' + e).before('<label class="da11y-screen-reader-text" for="et_pb_s_module_input_' + e + '">Search for...</label>');
+	});
+
+	/**
 	 * Add unique ID to contact module input with matching label.
 	 *
 	 * @divi-module  Contact
