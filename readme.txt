@@ -52,6 +52,9 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
+= 1.2.7 =
+* Improved the way mobile menu is handled with keyboard.
+
 = 1.2.6 =
 * Social links now have text, thanks to maco.
 * Fix sanitization across the plugin.
