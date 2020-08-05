@@ -40,6 +40,26 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 					$(this).parents('.menu-item-has-children').children('.da11y-submenu').attr('aria-expanded', 'false').trigger('mouseleave').siblings('.sub-menu').removeClass('da11y-submenu-show');
 				}
 			});
+			
+			/**
+			 * Allows mobile menu to be opened with keyboard.
+			 */
+			$(".mobile_menu_bar_toggle").keyup(function(event) {
+				if (event.keyCode === 13) {
+					$(".mobile_menu_bar_toggle").click();
+				}
+			});
+
+			/**
+			 * Closes mobile menu when it loses focus.
+			 */
+			$(this).on('focusin', function (e) {
+				if($("#et_mobile_nav_menu .mobile_nav").hasClass('opened')) {
+					if(!$("#et_mobile_nav_menu .et_mobile_menu :focus").length) {
+						$("#et_mobile_nav_menu .mobile_menu_bar_toggle").click();
+					}
+				}
+			});
 
 			/**
 			 * Generate search form styles.
