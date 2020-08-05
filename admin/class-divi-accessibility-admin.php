@@ -349,6 +349,7 @@ class Divi_Accessibility_Admin {
 				'name'          => 'aria_mobile_menu',
 				'label_for'     => $this->da11y . '_aria_mobile_menu',
 				'label_text'    => 'Apply Aria attributes to the mobile (burger) menu to make it accessible.',
+				'label_subtext' => '',
 			)
 		);
 
@@ -542,7 +543,6 @@ class Divi_Accessibility_Admin {
 				value="<?php echo esc_attr( $color ); ?>"
 				class="da11y-color-picker"
 				data-default-color="<?php echo esc_attr( $default_color ); ?>"
-				<?php checked( $checked, 1 ); ?>
 				/>
 			</label>
 
