@@ -51,6 +51,17 @@ if ( $this->can_load( 'dropdown_keyboard_navigation' ) ) {
 			});
 
 			/**
+			 * Allows mobile menu to be closed with keyboard.
+			 */
+			$(document).keyup(function(event) {
+				if (event.keyCode === 27) {
+					if($("#et_mobile_nav_menu .mobile_nav").hasClass('opened')) {
+						$(".mobile_menu_bar_toggle").click();
+					}
+				}
+			});
+
+			/**
 			 * Closes mobile menu when it loses focus.
 			 */
 			$(this).on('focusin', function (e) {
