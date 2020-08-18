@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -16,7 +15,7 @@
  * Plugin Name:       Divi Accessibility
  * Plugin URI:        https://wordpress.org/plugins/accessible-divi/
  * Description:       Improve Divi accessibility in accordance with WCAG 2.0 guidelines.
- * Version:           1.2.6
+ * Version:           2.0.0
  * Author:            CampusPress
  * Author URI:        https://campuspress.com
  * License:           GPL-2.0+
@@ -28,6 +27,10 @@
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
+}
+
+if ( ! defined( 'DA11Y_VERSION' ) ) {
+	define( 'DA11Y_VERSION', '2.0.0' );
 }
 
 // Used for referring to the plugin file or basename.
@@ -69,7 +72,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-divi-accessibility.php';
  */
 function run_divi_accessibility() {
 
-	$plugin = new Divi_Accessibility();
+	$plugin = new Divi_Accessibility( DA11Y_VERSION );
 	$plugin->run();
 
 }

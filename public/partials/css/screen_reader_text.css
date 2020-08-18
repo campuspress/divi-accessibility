@@ -1,0 +1,40 @@
+.et_pb_contact_form_label,
+.widget_search .screen-reader-text,
+.et_pb_social_media_follow_network_name,
+.et_pb_search .screen-reader-text {
+	display: block !important; /* Reverse Divi adding display: none to screen reader text */
+}
+.da11y-screen-reader-text,
+.et_pb_contact_form_label,
+.widget_search .screen-reader-text,
+.et_pb_social_media_follow_network_name,
+.et_pb_search .screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	text-shadow: none;
+	text-transform: none;
+	letter-spacing: normal;
+	line-height: normal;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+	font-size: 1em;
+	font-weight: 600;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+.da11y-screen-reader-text:focus {
+	background: #f1f1f1;
+	color: #00547A;
+	-webkit-box-shadow: 0 0 2px 2px rgba(0,0,0,.6);
+	box-shadow: 0 0 2px 2px rgba(0,0,0,.6);
+	clip: auto !important;
+	display: block;
+	height: auto;
+	left: 5px;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 7px;
+	width: auto;
+	z-index: 1000000; /* Above WP toolbar. */
+}
