@@ -352,6 +352,7 @@ class Divi_Accessibility_Admin {
 				'name'       => 'aria_mobile_menu',
 				'label_for'  => $this->da11y . '_aria_mobile_menu',
 				'label_text' => __( 'Apply Aria attributes to the mobile (burger) menu to make it accessible.', 'divi-accessibility' ),
+				'label_subtext' => '',
 			)
 		);
 
