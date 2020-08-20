@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
 	/**
 	* Closes mobile menu when it loses focus.
 	*/
-	$(this).on('focusin', function (e) {
+	$(this).on('focusin', function () {
 		if($('#et_mobile_nav_menu .mobile_nav').hasClass('opened')) {
 			if(!$('#et_mobile_nav_menu .et_mobile_menu :focus').length) {
 				$('#et_mobile_nav_menu .mobile_menu_bar_toggle').click();
