@@ -12,5 +12,35 @@ jQuery(document).ready(function($) {
 		}
 	});
 
-});
+	/**
+	* Allows mobile menu to be opened with keyboard.
+	*/
+	$('.mobile_menu_bar_toggle').keyup(function(event) {
+		if (event.keyCode === 13) {
+			$('.mobile_menu_bar_toggle').click();
+		}
+	});
 
+	/**
+	* Allows mobile menu to be closed with keyboard.
+	*/
+	$(document).keyup(function(event) {
+		if (event.keyCode === 27) {
+			if($('#et_mobile_nav_menu .mobile_nav').hasClass('opened')) {
+				$('.mobile_menu_bar_toggle').click();
+			}
+		}
+	});
+
+	/**
+	* Closes mobile menu when it loses focus.
+	*/
+	$(this).on('focusin', function (e) {
+		if($('#et_mobile_nav_menu .mobile_nav').hasClass('opened')) {
+			if(!$('#et_mobile_nav_menu .et_mobile_menu :focus').length) {
+				$('#et_mobile_nav_menu .mobile_menu_bar_toggle').click();
+			}
+		}
+	});
+
+});

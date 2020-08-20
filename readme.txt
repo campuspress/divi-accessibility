@@ -52,6 +52,10 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
+= 2.0.1 =
+* Improvements for mobile menu opening and closing with keyboard.
+* Admin screen improvements.
+
 = 2.0.0 =
 * Refactor inline styles and scripts to work with a packaging system.
 * Add default aria-label to mobile menu.
