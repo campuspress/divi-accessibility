@@ -52,8 +52,15 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
-= 1.2.7 =
-* Improved the way mobile menu is handled with keyboard.
+= 2.0.1 =
+* Improvements for mobile menu opening and closing with keyboard.
+* Admin screen improvements.
+
+= 2.0.0 =
+* Refactor inline styles and scripts to work with a packaging system.
+* Add default aria-label to mobile menu.
+* Fix back to top link default styles.
+* Fix missing label on search form.
 
 = 1.2.6 =
 * Social links now have text, thanks to maco.

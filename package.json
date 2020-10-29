@@ -1,0 +1,52 @@
+{
+  "name": "divi-accessibility",
+  "version": "2.0.1",
+  "description": "A WordPress plugin that improves Divi accessibility in accordance with WCAG 2",
+  "watch": {
+    "build": {
+      "patterns": [
+        "public/partials/css",
+        "public/partials/js"
+      ],
+      "extensions": "css,js",
+      "ignore": "*.min.*"
+    }
+  },
+  "scripts": {
+    "styles": "node scripts/compress-css.js",
+    "lint-styles": "csslint public/partials/css --ignore=order-alphabetical,important --quiet",
+    "scripts": "node scripts/compress-js.js",
+    "lint-scripts": "eslint public/partials/js",
+    "lint": "npm run lint-scripts && npm run lint-styles",
+    "build": "npm run scripts && npm run styles",
+    "watch": "npm-watch",
+    "i18n": "wpi18n makepot",
+    "package": "npm run build && node scripts/package.js",
+    "prerelease": "node scripts/prerelease.js",
+    "release": "npm run lint && npm run i18n && npm run prerelease && npm run package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/campuspress/divi-accessibility.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/campuspress/divi-accessibility/issues"
+  },
+  "homepage": "https://github.com/campuspress/divi-accessibility#readme",
+  "devDependencies": {
+    "adm-zip": "^0.4.14",
+    "compare-versions": "^3.6.0",
+    "csslint": "^1.0.5",
+    "cssnano": "^4.1.10",
+    "eslint": "^6.8.0",
+    "node-wp-i18n": "^1.2.3",
+    "npm-watch": "^0.6.0",
+    "postcss-cli": "^7.1.0",
+    "readline-sync": "^1.4.10",
+    "shelljs": "^0.8.3",
+    "terser": "^4.6.10"
+  }
+}
