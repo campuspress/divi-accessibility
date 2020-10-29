@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if ( ! defined( 'DA11Y_VERSION' ) ) {
-	define( 'DA11Y_VERSION', '2.0.1' );
+	define( 'DA11Y_VERSION', '2.0.2' );
 }
 
 // Used for referring to the plugin file or basename.
