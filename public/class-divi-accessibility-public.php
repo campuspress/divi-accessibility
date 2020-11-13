@@ -155,6 +155,9 @@ class Divi_Accessibility_Public {
 					: $defaults['outline_color']
 			);
 		}
+		if ( $this->can_load( 'skip_navigation_link' ) ) {
+			$data['skip_navigation_link_text'] = __( 'Skip to content', 'divi-accessibility' );
+		}
 		return $data;
 	}
 
