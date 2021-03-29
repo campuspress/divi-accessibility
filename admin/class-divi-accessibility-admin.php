@@ -174,6 +174,8 @@ class Divi_Accessibility_Admin {
 			'aria_hidden_icons'            => 1,
 			'aria_mobile_menu'             => 1,
 			'fix_duplicate_menu_ids'       => 1,
+			'underline_urls'			   => 0,
+			'underline_urls_not_title'     => 0,
 			'tota11y'                      => 0,
 			'developer_mode'               => 0,
 		);
@@ -367,6 +369,36 @@ class Divi_Accessibility_Admin {
 				'name'          => 'fix_duplicate_menu_ids',
 				'label_for'     => $this->da11y . '_fix_duplicate_menu_ids',
 				'label_text'    => __( 'Because Divi uses the same menu twice (Once for the primary menu and again for the mobile menu), the unique ID\'s are duplicated causing validation issues. This option prevents WordPress from adding a unique ID to the menu list items.', 'divi-accessibility' ),
+				'label_subtext' => '',
+			)
+		);
+
+		// Add underline to all links in #et-main-area
+		add_settings_field(
+			$this->da11y . '_underline_urls',
+			__( 'Underline URLs', 'divi-accessibility' ),
+			array( $this, 'divi_accessibility_checkbox_cb' ),
+			$this->da11y,
+			$general_section,
+			array(
+				'name'          => 'underline_urls',
+				'label_for'     => $this->da11y . '_underline_urls',
+				'label_text'    => __( 'Easily find out URLs when they are underlined' ),
+				'label_subtext' => '',
+			)
+		);
+
+		// Remove underline from .entry-title
+		add_settings_field(
+			$this->da11y . '_underline_urls_not_title',
+			__( 'Exclude underlines from titles and buttons', 'divi-accessibility' ),
+			array( $this, 'divi_accessibility_checkbox_cb' ),
+			$this->da11y,
+			$general_section,
+			array(
+				'name'          => 'underline_urls_not_title',
+				'label_for'     => $this->da11y . '_underline_urls_not_title',
+				'label_text'    => __( 'If you don\'t like Blog title or buttons to be underlined you can disable it from here' ),
 				'label_subtext' => '',
 			)
 		);

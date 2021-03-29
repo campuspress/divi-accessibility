@@ -190,6 +190,8 @@ class Divi_Accessibility_Public {
 			'dropdown_keyboard_navigation',
 			'keyboard_navigation_outline',
 			'screen_reader_text',
+			'underline_urls',
+			'underline_urls_not_title',
 		);
 	}
 

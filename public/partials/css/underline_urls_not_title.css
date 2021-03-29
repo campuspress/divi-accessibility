@@ -1,0 +1,4 @@
+#et-main-area .entry-title a,
+.wp-block-button a {
+	text-decoration: none !important;
+}
