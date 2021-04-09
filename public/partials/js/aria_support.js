@@ -53,6 +53,7 @@ jQuery(document).ready(function($) {
 		});
 	});
 
+
 	/**
 	* Add initial state:
 	*
@@ -67,6 +68,37 @@ jQuery(document).ready(function($) {
 			'aria-selected': 'true',
 			'aria-expanded': 'true',
 			tabindex: 0
+		});
+	});
+
+
+	// Add aria-haspopup="true" support to submenus
+	$('ul.sub-menu .menu-item a').each(function () {
+		$(this).attr({
+			'aria-haspopup': 'true',
+		});
+	});
+
+	// Add role="link" to all links
+	$('a:not(.et-social-icon a, .wp-block-button__link, figure a)').each(function () {
+		$(this).attr({
+			'role': 'link',
+		});
+	});
+
+	// Add role="button" to clickable elements
+	$('#et_search_icon, .et_close_search_field, #et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link').each(function () {
+		$(this).attr({
+			'role': 'button',
+		});
+	});
+
+	//Add aria support to reCAPTCHA
+	$('#g-recaptcha-response').each(function () {
+		$(this).attr({
+			'aria-hidden': 'true',
+			'aria-label': 'do not use',
+			'aria-readonly': 'true',
 		});
 	});
 
@@ -222,4 +254,3 @@ jQuery(document).ready(function($) {
 	$('#comment-wrap').attr('aria-label', 'Comments');
 
 });
-
