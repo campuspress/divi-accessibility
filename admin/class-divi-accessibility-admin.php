@@ -398,7 +398,7 @@ class Divi_Accessibility_Admin {
 			array(
 				'name'          => 'underline_urls_not_title',
 				'label_for'     => $this->da11y . '_underline_urls_not_title',
-				'label_text'    => __( 'If you don\'t like Blog title or buttons to be underlined you can disable it from here' ),
+				'label_text'    => __( 'If you don\'t like title, headings or buttons to be underlined you can disable it from here' ),
 				'label_subtext' => '',
 			)
 		);
