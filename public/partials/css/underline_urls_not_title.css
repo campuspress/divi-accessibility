@@ -1,4 +1,6 @@
 #et-main-area .entry-title a,
-.wp-block-button a {
+.wp-block-button a,
+.et_pb_button,
+.et_pb_module_header a {
 	text-decoration: none !important;
 }
