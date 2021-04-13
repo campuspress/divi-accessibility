@@ -80,14 +80,14 @@ jQuery(document).ready(function($) {
 	});
 
 	// Add role="link" to all links
-	$('a:not(.et-social-icon a, .wp-block-button__link, figure a, .et_pb_button a)').each(function () {
+	$('a:not(.et-social-icon a, .wp-block-button__link, figure a, .et_pb_button)').each(function () {
 		$(this).attr({
 			'role': 'link',
 		});
 	});
 
 	// Add role="button" to clickable elements
-	$('#et_search_icon, .et_close_search_field, #et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link, .et_pb_button a').each(function () {
+	$('#et_search_icon, .et_close_search_field, #et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link, .et_pb_button').each(function () {
 		$(this).attr({
 			'role': 'button',
 		});
