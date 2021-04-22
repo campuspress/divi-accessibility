@@ -1,0 +1,3 @@
+#et-main-area a:not(.et-social-icons a) {
+	text-decoration: underline;
+}
