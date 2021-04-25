@@ -52,6 +52,9 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
+= 2.0.3 =
+* Fix mobile menu bugs.
+
 = 2.0.2 =
 * Added option to underline all links in Divi under #et-main-area.
 * Added option to remove the underline from title and buttons in Divi.
