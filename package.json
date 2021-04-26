@@ -1,6 +1,6 @@
 {
   "name": "divi-accessibility",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "description": "A WordPress plugin that improves Divi accessibility in accordance with WCAG 2",
   "watch": {
     "build": {
