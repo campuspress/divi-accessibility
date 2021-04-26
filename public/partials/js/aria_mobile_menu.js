@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
 	* Allows mobile menu to be opened with keyboard.
 	*/
 	$('.mobile_menu_bar').keyup(function(event) {
-		if (event.keyCode === 13) {
+		if (event.keyCode === 13 || event.keyCode === 32) {
 			$('.mobile_menu_bar').click();
 		}
 	});
