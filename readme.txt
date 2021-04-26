@@ -51,6 +51,8 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 
 == Changelog ==
+= 2.0.4 =
+* Improvements for mobile menu opening and closing with keyboard.
 
 = 2.0.3 =
 * Fix mobile menu bugs.
