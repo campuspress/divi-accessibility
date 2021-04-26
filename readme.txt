@@ -52,6 +52,17 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
+= 2.0.3 =
+* Fix mobile menu bugs.
+
+= 2.0.2 =
+* Added option to underline all links in Divi under #et-main-area.
+* Added option to remove the underline from title and buttons in Divi.
+* Added aria-haspopup="true" to submenus.
+* All links now have role="link".
+* All buttons, clickable icon now have role="button".
+* The "g-recaptcha-response" is now accessible.
+
 = 2.0.1 =
 * Improvements for mobile menu opening and closing with keyboard.
 * Admin screen improvements.
