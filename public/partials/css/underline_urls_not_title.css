@@ -1,6 +1,7 @@
 #et-main-area .entry-title a,
 .wp-block-button a,
 .et_pb_button,
-.et_pb_module_header a {
+.et_pb_module_header a,
+.et_pb_video_play {
 	text-decoration: none !important;
 }
