@@ -23,8 +23,10 @@ jQuery(document).ready(function($) {
 	 *
 	 * @divi-module  Tab
 	 */
-	$('.et_pb_tabs_controls a').each(function () {
-		$(this).attr('role', 'tab');
+	 $('.et_pb_tabs_controls a').each(function () {
+		$(this).attr({
+			'role': 'tab',
+		});
 	});
 
 	/**
@@ -90,13 +92,6 @@ jQuery(document).ready(function($) {
 	$('#et_search_icon, .et_close_search_field, #et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link, .et_pb_button, .et_pb_video_play a').each(function () {
 		$(this).attr({
 			'role': 'button',
-		});
-	});
-
-	// Add role="tab" to divi tab module
-	$('.et_pb_tabs_controls a').each(function () {
-		$(this).attr({
-			'role': 'tab',
 		});
 	});
 
