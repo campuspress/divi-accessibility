@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
 	 * @divi-module  Tab
 	 */
 	$('.et_pb_tabs_controls').each(function () {
-		$(this).attr('role', 'tabList');
+		$(this).attr('role', 'tablist');
 	});
 
 	/**
@@ -23,8 +23,10 @@ jQuery(document).ready(function($) {
 	 *
 	 * @divi-module  Tab
 	 */
-	$('.et_pb_tabs_controls a').each(function () {
-		$(this).attr('role', 'tab');
+	 $('.et_pb_tabs_controls a').each(function () {
+		$(this).attr({
+			'role': 'tab',
+		});
 	});
 
 	/**
@@ -80,14 +82,14 @@ jQuery(document).ready(function($) {
 	});
 
 	// Add role="link" to all links
-	$('a:not(.et-social-icon a, .wp-block-button__link, figure a, .et_pb_button)').each(function () {
+	$('a:not(.et-social-icon a, .wp-block-button__link, figure a, .et_pb_button, .et_pb_video_play a, .et_pb_tabs_controls a)').each(function () {
 		$(this).attr({
 			'role': 'link',
 		});
 	});
 
 	// Add role="button" to clickable elements
-	$('#et_search_icon, .et_close_search_field, #et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link, .et_pb_button').each(function () {
+	$('#et_search_icon, .et_close_search_field, #et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link, .et_pb_button, .et_pb_video_play a').each(function () {
 		$(this).attr({
 			'role': 'button',
 		});
