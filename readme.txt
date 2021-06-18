@@ -52,6 +52,12 @@ Plugin created by [CampusPress](https://campuspress.com). Plugin icon based off 
 
 == Changelog ==
 
+= 2.0.5 =
+* Added support for escape button in submenu.
+* Added missing aria attributes to Accordion & Toggle (thanks @muiradams).
+* Improvements for removal of focus class (thanks @kanterjoe).
+* Improvements for adding role="link".
+
 = 2.0.4 =
 * Improvements for mobile menu opening and closing with keyboard.
 
