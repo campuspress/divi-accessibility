@@ -255,4 +255,10 @@ jQuery(document).ready(function($) {
 	});
 	$('#comment-wrap').attr('aria-label', 'Comments');
 
+	/**
+	 * Add aria-hidden to media players
+	 */
+	if( window._da11y.options.aria_hidden_videos ) {
+		$('.mejs-video').attr('aria-hidden', 'true');
+	}
 });
