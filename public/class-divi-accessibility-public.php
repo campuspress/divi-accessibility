@@ -101,7 +101,7 @@ class Divi_Accessibility_Public {
 	public function setup_scripts_and_styles() {
 		wp_enqueue_script(
 			'divi-accessibility-da11y',
-			plugin_dir_url( __FILE__ ) . 'js/da11y.js',
+            plugin_dir_url( __FILE__ ) . 'js/da11y.js',
 			array( 'jquery' ),
 			$this->version,
 			true
@@ -124,7 +124,7 @@ class Divi_Accessibility_Public {
 		if ( true == $this->can_load_tota11y() ) {
 			wp_enqueue_script(
 				'divi-accessibility-tota11y',
-				plugin_dir_url( __FILE__ ) . 'js/tota11y.min.js',
+                plugin_dir_url( __FILE__ ) . 'js/tota11y.min.js',
 				array( 'jquery' ),
 				$this->version,
 				false
@@ -282,9 +282,9 @@ class Divi_Accessibility_Public {
 			? ''
 			: '.min';
 		return trailingslashit( $root ) .
-			sanitize_file_name( $name ) .
-			$minified .
-			'.' . $type;
+            sanitize_file_name( $name ) .
+            $minified .
+            '.' . $type;
 	}
 
 	/**
@@ -305,9 +305,9 @@ class Divi_Accessibility_Public {
 			? ''
 			: '.min';
 		return trailingslashit( $root ) .
-			sanitize_file_name( $name ) .
-			$minified .
-			'.' . $type;
+            sanitize_file_name( $name ) .
+            $minified .
+            '.' . $type;
 	}
 
 	/**
@@ -333,7 +333,7 @@ class Divi_Accessibility_Public {
 	public function is_in_developer_mode() {
 		return apply_filters(
 			'divi_accessibility_developer_mode',
-			current_user_can( 'manage_options' ) && $this->can_load( 'developer_mode' )
+            current_user_can( 'manage_options' ) && $this->can_load( 'developer_mode' )
 		);
 	}
 
@@ -400,12 +400,19 @@ class Divi_Accessibility_Public {
 	 *
 	 * @return string
 	 */
-	function hide_aria_element( $output, $render_method, $element ) {
+	function add_accessibilty_classes( $output, $render_method, $element ) {
 		if( is_string( $output ) ) {
-			$is_aria_disabled = $element->props['hide_aria_element'] === 'on';
 
-			if ($is_aria_disabled) {
-				$output = preg_replace('/class=\"(.*?)\"/', 'class="$1 aria-hidden"', $output, 1);
+			$class_list = '';
+
+			if( $element->props['hide_aria_element'] === 'on' ) {
+				$class_list .= ' aria-hidden';
+			}
+			if( $element->props['show_for_screen_readers_only'] === 'on' ) {
+				$class_list .= ' screen-reader-text';
+			}
+			if ( $class_list ) {
+				$output = preg_replace('/class=\"(.*?)\"/', 'class="$1' . $class_list . '"', $output, 1);
 			}
 		}
 		return $output;
