@@ -255,4 +255,19 @@ jQuery(document).ready(function($) {
 	});
 	$('#comment-wrap').attr('aria-label', 'Comments');
 
+	/**
+	 * Hide manually disabled ARIA elements
+	 */
+	$('.aria-hidden').each(function (index, element) {
+		hideAriaElement(element);
+	});
+
+	function hideAriaElement(element) {
+		const $element = $(element);
+		$(element).attr('aria-hidden', 'true');
+
+		for(const child of $element.children()){
+			hideAriaElement(child);
+		}
+	}
 });
