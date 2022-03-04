@@ -590,26 +590,41 @@ class Divi_Accessibility_Admin {
 	}
 
 	/**
-	 * Add DIVI Builder setting to hide any element ARIA
+	 * Register DIVI builder accessibility settings
 	 *
 	 * @param array $fields
 	 * @return array
 	 */
-	function divi_builder_register_aria_setting( $fields ) {
-		$accessibility_setting = array(
-			'type'              => 'yes_no_button',
-			'description'       => __( 'Hide From Screen Readers', 'divi-accessibility' ),
-			'label'             => __( 'Hide From Screen Readers', 'divi-accessibility' ),
-			'option_category'   => 'configuration',
-			'options'           => array(
-				'off' => et_builder_i18n( 'No' ),
-				'on'  => et_builder_i18n( 'Yes' )
-			),
-			'default'           => 'off',
-			'toggle_slug'       => 'hide_aria_element'
+	function divi_builder_register_accessibilty_settings( $fields ) {
+		$hide_aria_setting = array(
+				'type'              => 'yes_no_button',
+				'description'       => __( 'Hide From Screen Readers', 'divi-accessibility' ),
+				'label'             => __( 'Hide From Screen Readers', 'divi-accessibility' ),
+				'option_category'   => 'configuration',
+				'options' => array(
+					'off' => et_builder_i18n( 'No' ),
+					'on' => et_builder_i18n( 'Yes' )
+				),
+				'default'     => 'off',
+				'toggle_slug' => 'accessibility'
 		);
 
-		$fields['hide_aria_element'] = $accessibility_setting;
+		$fields['hide_aria_element'] = $hide_aria_setting;
+
+		$show_for_screen_readers_only = array(
+			'type'              => 'yes_no_button',
+			'description'       => __( 'Make element visible for Screen Readers only', 'divi-accessibility' ),
+			'label'             => __( 'Show For Screen Readers Only', 'divi-accessibility' ),
+			'option_category'   => 'configuration',
+			'options' => array(
+				'off' => et_builder_i18n( 'No' ),
+				'on' => et_builder_i18n( 'Yes' )
+			),
+			'default'     => 'off',
+			'toggle_slug' => 'accessibility'
+		);
+		$fields['show_for_screen_readers_only'] = $show_for_screen_readers_only;
+
 		return $fields;
 	}
 
@@ -620,13 +635,13 @@ class Divi_Accessibility_Admin {
 	 *
 	 * @return string
 	 */
-	function divi_builder_add_setting_toggle( $content, $post_type ) {
+	function divi_builder_add_accessibility_group( $content, $post_type ) {
 		if( $content ) {
 			$json = mb_substr( $content, 43, strlen( $content ) - 68 );
 
 			$params = json_decode( $json, true );
 			foreach( $params['optionsToggles'] as $key => $element ) {
-				$element['general']['toggles']['hide_aria_element'] = array( 'title' => __( 'Accessibility Settings', 'divi-accessibility' ), 'priority' => 50 );
+				$element['general']['toggles']['accessibility'] = array( 'title' => __( 'Accessibility Settings', 'divi-accessibility' ), 'priority' => 50 );
 				$params['optionsToggles'][$key] = $element;
 			}
 

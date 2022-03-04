@@ -400,12 +400,19 @@ class Divi_Accessibility_Public {
 	 *
 	 * @return string
 	 */
-	function hide_aria_element( $output, $render_method, $element ) {
+	function add_accessibilty_classes( $output, $render_method, $element ) {
 		if( is_string( $output ) ) {
-			$is_aria_disabled = $element->props['hide_aria_element'] === 'on';
 
-			if ($is_aria_disabled) {
-				$output = preg_replace('/class=\"(.*?)\"/', 'class="$1 aria-hidden"', $output, 1);
+			$class_list = '';
+
+			if( $element->props['hide_aria_element'] === 'on' ) {
+				$class_list .= ' aria-hidden';
+			}
+			if( $element->props['show_for_screen_readers_only'] === 'on' ) {
+				$class_list .= ' screen-reader-text';
+			}
+			if ( $class_list ) {
+				$output = preg_replace('/class=\"(.*?)\"/', 'class="$1' . $class_list . '"', $output, 1);
 			}
 		}
 		return $output;
