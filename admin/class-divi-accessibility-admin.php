@@ -589,4 +589,52 @@ class Divi_Accessibility_Admin {
 		<?php
 	}
 
+	/**
+	 * Add DIVI Builder setting to hide any element ARIA
+	 *
+	 * @param array $fields
+	 * @return array
+	 */
+	function divi_builder_register_aria_setting( $fields ) {
+		$accessibility_setting = array(
+			'type'              => 'yes_no_button',
+			'description'       => __( 'Hide From Screen Readers', 'divi-accessibility' ),
+			'label'             => __( 'Hide From Screen Readers', 'divi-accessibility' ),
+			'option_category'   => 'configuration',
+			'options'           => array(
+				'off' => et_builder_i18n( 'No' ),
+				'on'  => et_builder_i18n( 'Yes' )
+			),
+			'default'           => 'off',
+			'toggle_slug'       => 'hide_aria_element'
+		);
+
+		$fields['hide_aria_element'] = $accessibility_setting;
+		return $fields;
+	}
+
+	/**
+	 * Add section in DIVI element options modal
+	 * @param string $content
+	 * @param string $post_type
+	 *
+	 * @return string
+	 */
+	function divi_builder_add_setting_toggle( $content, $post_type ) {
+		if( $content ) {
+			$json = mb_substr( $content, 43, strlen( $content ) - 68 );
+
+			$params = json_decode( $json, true );
+			foreach( $params['optionsToggles'] as $key => $element ) {
+				$element['general']['toggles']['hide_aria_element'] = array( 'title' => __( 'Accessibility Settings', 'divi-accessibility' ), 'priority' => 50 );
+				$params['optionsToggles'][$key] = $element;
+			}
+
+			return sprintf(
+					'window.ETBuilderBackend=jQuery.extend(true,%s,window.ETBuilderBackend)',
+					et_fb_remove_site_url_protocol( wp_json_encode( $params, ET_BUILDER_JSON_ENCODE_OPTIONS ) )
+			);
+		}
+		return '';
+	}
 }

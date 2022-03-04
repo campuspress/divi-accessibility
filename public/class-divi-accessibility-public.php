@@ -392,4 +392,22 @@ class Divi_Accessibility_Public {
 		}
 
 	}
+
+	/**
+	 * @param string $output
+	 * @param string $render_method
+	 * @param ET_Builder_Element $element
+	 *
+	 * @return string
+	 */
+	function hide_aria_element( $output, $render_method, $element ) {
+		if( is_string( $output ) ) {
+			$is_aria_disabled = $element->props['hide_aria_element'] === 'on';
+
+			if ($is_aria_disabled) {
+				$output = preg_replace('/class=\"(.*?)\"/', 'class="$1 aria-hidden"', $output, 1);
+			}
+		}
+		return $output;
+	}
 }
