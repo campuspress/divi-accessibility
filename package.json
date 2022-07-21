@@ -48,7 +48,7 @@
     "postcss-cli": "^8.3.1",
     "readline-sync": "^1.4.10",
     "shelljs": "^0.8.4",
-    "terser": "^4.8.0"
+    "terser": "^4.8.1"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"
