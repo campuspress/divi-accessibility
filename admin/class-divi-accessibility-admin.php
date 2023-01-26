@@ -589,4 +589,67 @@ class Divi_Accessibility_Admin {
 		<?php
 	}
 
+	/**
+	 * Register DIVI builder accessibility settings
+	 *
+	 * @param array $fields
+	 * @return array
+	 */
+	function divi_builder_register_accessibilty_settings( $fields ) {
+		$hide_aria_setting = array(
+				'type'              => 'yes_no_button',
+				'description'       => __( 'Hide From Screen Readers', 'divi-accessibility' ),
+				'label'             => __( 'Hide From Screen Readers', 'divi-accessibility' ),
+				'option_category'   => 'configuration',
+				'options' => array(
+					'off' => et_builder_i18n( 'No' ),
+					'on' => et_builder_i18n( 'Yes' )
+				),
+				'default'     => 'off',
+				'toggle_slug' => 'accessibility'
+		);
+
+		$fields['hide_aria_element'] = $hide_aria_setting;
+
+		$show_for_screen_readers_only = array(
+			'type'              => 'yes_no_button',
+			'description'       => __( 'Make element visible for Screen Readers only', 'divi-accessibility' ),
+			'label'             => __( 'Show For Screen Readers Only', 'divi-accessibility' ),
+			'option_category'   => 'configuration',
+			'options' => array(
+				'off' => et_builder_i18n( 'No' ),
+				'on' => et_builder_i18n( 'Yes' )
+			),
+			'default'     => 'off',
+			'toggle_slug' => 'accessibility'
+		);
+		$fields['show_for_screen_readers_only'] = $show_for_screen_readers_only;
+
+		return $fields;
+	}
+
+	/**
+	 * Add section in DIVI element options modal
+	 * @param string $content
+	 * @param string $post_type
+	 *
+	 * @return string
+	 */
+	function divi_builder_add_accessibility_group( $content, $post_type ) {
+		if( $content ) {
+			$json = mb_substr( $content, 43, strlen( $content ) - 68 );
+
+			$params = json_decode( $json, true );
+			foreach( $params['optionsToggles'] as $key => $element ) {
+				$element['general']['toggles']['accessibility'] = array( 'title' => __( 'Accessibility Settings', 'divi-accessibility' ), 'priority' => 50 );
+				$params['optionsToggles'][$key] = $element;
+			}
+
+			return sprintf(
+					'window.ETBuilderBackend=jQuery.extend(true,%s,window.ETBuilderBackend)',
+					et_fb_remove_site_url_protocol( wp_json_encode( $params, ET_BUILDER_JSON_ENCODE_OPTIONS ) )
+			);
+		}
+		return '';
+	}
 }

@@ -392,4 +392,29 @@ class Divi_Accessibility_Public {
 		}
 
 	}
+
+	/**
+	 * @param string $output
+	 * @param string $render_method
+	 * @param ET_Builder_Element $element
+	 *
+	 * @return string
+	 */
+	function add_accessibilty_classes( $output, $render_method, $element ) {
+		if( is_string( $output ) ) {
+
+			$class_list = '';
+
+			if( $element->props['hide_aria_element'] === 'on' ) {
+				$class_list .= ' aria-hidden';
+			}
+			if( $element->props['show_for_screen_readers_only'] === 'on' ) {
+				$class_list .= ' screen-reader-text';
+			}
+			if ( $class_list ) {
+				$output = preg_replace('/class=\"(.*?)\"/', 'class="$1' . $class_list . '"', $output, 1);
+			}
+		}
+		return $output;
+	}
 }

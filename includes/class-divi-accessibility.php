@@ -134,6 +134,11 @@ class Divi_Accessibility {
 		add_action( 'admin_init', array( $plugin_admin, 'register_settings' ) );
 		add_filter( 'plugin_action_links_' . DA11Y_FILE, array( $plugin_admin, 'link_settings' ) );
 
+		//DIVI ARIA visibility
+		add_filter( 'et_builder_module_general_fields', array( $plugin_admin,
+			'divi_builder_register_accessibilty_settings'
+		), 15, 1 );
+		add_filter( 'et_fb_get_asset_definitions', array( $plugin_admin, 'divi_builder_add_accessibility_group' ), 15, 2 );
 	}
 
 	/**
@@ -156,6 +161,7 @@ class Divi_Accessibility {
 		add_action( 'wp_head', array( $plugin_public, 'accessible_viewport_meta' ) );
 		add_filter( 'init', array( $plugin_public, 'remove_duplicate_menu_ids' ) );
 
+		add_action( 'et_module_process_display_conditions', array( $plugin_public, 'add_accessibilty_classes' ), PHP_INT_MAX, 3 );
 	}
 
 	/**
