@@ -172,6 +172,7 @@ class Divi_Accessibility_Admin {
 			'screen_reader_text'           => 1,
 			'skip_navigation_link'         => 1,
 			'aria_hidden_icons'            => 1,
+			'aria_hidden_videos'		   => 1,
 			'aria_mobile_menu'             => 1,
 			'fix_duplicate_menu_ids'       => 1,
 			'underline_urls'			   => 0,
@@ -340,6 +341,20 @@ class Divi_Accessibility_Admin {
 				'label_for'     => $this->da11y . '_aria_hidden_icons',
 				'label_text'    => __( 'Hide all icons to screen readers so text is read normally.', 'divi-accessibility' ),
 				'label_subtext' => __( 'This may not work for all icons', 'divi-accessibility' ),
+			)
+		);
+
+		add_settings_field(
+			$this->da11y . '_aria_hidden_videos',
+			__( 'Hide videos', 'divi_accessibility' ),
+			array( $this, 'divi_accessibility_checkbox_cb' ),
+			$this->da11y,
+			$general_section,
+			array(
+				'name'			 => 'aria_hidden_videos',
+				'label_for' 	 => $this->da11y . '_aria_hidden_videos',
+				'label_text'	 => __( 'Hide Video Player to screen readers', 'divi-accessibility' ),
+				'label_sub_text' => ''
 			)
 		);
 
