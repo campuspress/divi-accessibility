@@ -89,9 +89,15 @@ jQuery(document).ready(function($) {
 	});
 
 	// Add role="button" to clickable elements
-	$('#et_search_icon, .et_close_search_field, #et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link, .et_pb_button, .et_pb_video_play a').each(function () {
+	$(#et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link, .et_pb_button, .et_pb_video_play a').each(function () {
 		$(this).attr({
 			'role': 'button',
+		});
+	});
+
+	$('#et_search_icon, .et_close_search_field').each(function () {
+		$(this).attr({
+			'role': 'search',
 		});
 	});
 
