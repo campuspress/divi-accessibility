@@ -1,5 +1,8 @@
 jQuery(document).ready(function($) {
 
+	$('.et-menu > li').on('focusout', function() {
+		$(this).removeClass('et-hover');
+	});
 	if($('.menu-item-has-children > a').length ) {
 		$('.menu-item-has-children > a').addClass('da11y-submenu');
 		$('.menu-item-has-children > a').attr('aria-expanded', 'false');
