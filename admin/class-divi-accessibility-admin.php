@@ -650,21 +650,13 @@ class Divi_Accessibility_Admin {
 	 *
 	 * @return string
 	 */
-	function divi_builder_add_accessibility_group( $content, $post_type ) {
-		if( $content ) {
-			$json = mb_substr( $content, 43, strlen( $content ) - 68 );
-
-			$params = json_decode( $json, true );
-			foreach( $params['optionsToggles'] as $key => $element ) {
-				$element['general']['toggles']['accessibility'] = array( 'title' => __( 'Accessibility Settings', 'divi-accessibility' ), 'priority' => 50 );
-				$params['optionsToggles'][$key] = $element;
+	function divi_builder_add_accessibility_group( array $modules, string $post_type ) {
+		foreach ( $modules as &$module ) {
+			if ( ! isset( $module->settings_modal_toggles['general']['toggles'] ) ) {
+				continue;
 			}
-
-			return sprintf(
-					'window.ETBuilderBackend=jQuery.extend(true,%s,window.ETBuilderBackend)',
-					et_fb_remove_site_url_protocol( wp_json_encode( $params, ET_BUILDER_JSON_ENCODE_OPTIONS ) )
-			);
+			$module->settings_modal_toggles['general']['toggles']['accessibility'] = array( 'title' => __( 'Accessibility Settings', 'divi-accessibility' ), 'priority' => 50 );
 		}
-		return '';
+		return $modules;
 	}
 }
