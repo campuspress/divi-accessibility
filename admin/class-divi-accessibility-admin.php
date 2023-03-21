@@ -645,12 +645,12 @@ class Divi_Accessibility_Admin {
 
 	/**
 	 * Add section in DIVI element options modal
-	 * @param string $content
+	 * @param array $modules
 	 * @param string $post_type
 	 *
-	 * @return string
+	 * @return array
 	 */
-	function divi_builder_add_accessibility_group( array $modules, string $post_type ) {
+	function divi_builder_add_accessibility_group( array $modules, string $post_type ): array {
 		foreach ( $modules as &$module ) {
 			if ( ! isset( $module->settings_modal_toggles['general']['toggles'] ) ) {
 				continue;
