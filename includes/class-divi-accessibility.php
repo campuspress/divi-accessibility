@@ -138,7 +138,8 @@ class Divi_Accessibility {
 		add_filter( 'et_builder_module_general_fields', array( $plugin_admin,
 			'divi_builder_register_accessibilty_settings'
 		), 15, 1 );
-		add_filter( 'et_fb_get_asset_definitions', array( $plugin_admin, 'divi_builder_add_accessibility_group' ), 15, 2 );
+		add_filter( 'et_builder_get_parent_modules', array( $plugin_admin, 'divi_builder_add_accessibility_group' ), 15, 2 );
+		add_filter( 'et_builder_get_child_modules', array( $plugin_admin, 'divi_builder_add_accessibility_group' ), 15, 2 );
 	}
 
 	/**
