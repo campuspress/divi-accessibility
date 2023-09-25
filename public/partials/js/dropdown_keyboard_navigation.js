@@ -8,8 +8,8 @@ jQuery(document).ready(function($) {
 		$('.menu-item-has-children > a').attr('aria-expanded', 'false');
 	}
 
-	$('.da11y-submenu').on('focus', function() {
-		$(this).attr('aria-expanded', 'true');
+	$('.menu-item a').on('focus', function() {
+		$(this).siblings('.da11y-submenu').attr('aria-expanded', 'true');
 		$(this).siblings('.sub-menu').addClass('da11y-submenu-show');
 		$(this).trigger('mouseenter');
 	});
