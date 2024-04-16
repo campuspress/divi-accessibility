@@ -95,9 +95,16 @@ jQuery(document).ready(function($) {
 		});
 	});
 
-	$('#et_search_icon, .et_close_search_field').each(function () {
+	$('.et_close_search_field').each(function () {
 		$(this).attr({
 			'role': 'search',
+		});
+	});
+
+	$('#et_search_icon').each(function () {
+		$(this).attr({
+			'role': 'searchbox',
+			'aria-label': 'search',
 		});
 	});
 
