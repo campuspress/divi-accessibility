@@ -89,9 +89,22 @@ jQuery(document).ready(function($) {
 	});
 
 	// Add role="button" to clickable elements
-	$('#et_search_icon, .et_close_search_field, #et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link, .et_pb_button, .et_pb_video_play a').each(function () {
+	$(#et_mobile_nav_menu, #searchsubmit, .icon, .wp-block-button__link, .et_pb_button, .et_pb_video_play a').each(function () {
 		$(this).attr({
 			'role': 'button',
+		});
+	});
+
+	$('.et_pb_menu__search-button').each(function () {
+		$(this).attr({
+			'role': 'searchbox',
+			'aria-label': 'search',
+		});
+	});
+
+	$('.et_pb_menu__close-search-button').each(function () {
+		$(this).attr({
+			'aria-label': 'click to close search',
 		});
 	});
 
