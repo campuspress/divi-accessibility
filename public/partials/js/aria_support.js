@@ -95,16 +95,16 @@ jQuery(document).ready(function($) {
 		});
 	});
 
-	$('.et_close_search_field').each(function () {
-		$(this).attr({
-			'role': 'search',
-		});
-	});
-
-	$('#et_search_icon').each(function () {
+	$('.et_pb_menu__search-button').each(function () {
 		$(this).attr({
 			'role': 'searchbox',
 			'aria-label': 'search',
+		});
+	});
+
+	$('.et_pb_menu__close-search-button').each(function () {
+		$(this).attr({
+			'aria-label': 'click to close search',
 		});
 	});
 
