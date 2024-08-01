@@ -37,18 +37,18 @@
   },
   "homepage": "https://github.com/campuspress/divi-accessibility#readme",
   "devDependencies": {
-    "adm-zip": "^0.4.16",
-    "compare-versions": "^3.6.0",
+    "adm-zip": "^0.5.14",
+    "compare-versions": "^6.1.1",
     "csslint": "^1.0.5",
-    "cssnano": "^5.0.6",
-    "eslint": "^6.8.0",
-    "node-wp-i18n": "^1.2.5",
-    "npm-watch": "^0.10.0",
-    "postcss": "^8.3.5",
-    "postcss-cli": "^8.3.1",
+    "cssnano": "^7.0.4",
+    "eslint": "^9.7.0",
+    "node-wp-i18n": "^1.2.7",
+    "npm-watch": "^0.13.0",
+    "postcss": "^8.4.40",
+    "postcss-cli": "^11.0.0",
     "readline-sync": "^1.4.10",
-    "shelljs": "^0.8.4",
-    "terser": "^4.8.0"
+    "shelljs": "^0.8.5",
+    "terser": "^5.31.3"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"
