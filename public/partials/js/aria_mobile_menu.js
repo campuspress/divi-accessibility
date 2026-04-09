@@ -1,7 +1,11 @@
 jQuery(document).ready(function($) {
 
+	function getOpenedMobileNav() {
+		return $('.mobile_nav.opened').first();
+	}
+
 	function getOpenedMobileMenuToggle() {
-		const openedNav = $('.mobile_nav.opened').first();
+		const openedNav = getOpenedMobileNav();
 
 		if ( ! openedNav.length ) {
 			return $();
@@ -48,11 +52,17 @@ jQuery(document).ready(function($) {
 	* Closes mobile menu when it loses focus.
 	*/
 	$(this).on('focusin', function () {
-		if($('#et_mobile_nav_menu .mobile_nav').hasClass('opened')) {
-			if(!$('#et_mobile_nav_menu .et_mobile_menu :focus').length) {
-				$('#et_mobile_nav_menu .mobile_menu_bar').click();
-			}
+		const openedNav = getOpenedMobileNav();
+
+		if ( ! openedNav.length ) {
+			return;
 		}
+
+		if ( openedNav.find('.et_mobile_menu :focus, .mobile_menu_bar:focus').length ) {
+			return;
+		}
+
+		getOpenedMobileMenuToggle().click();
 	});
 
 });
