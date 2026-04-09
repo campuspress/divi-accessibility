@@ -1,4 +1,26 @@
 jQuery(document).ready(function($) {
+	function setSubmenuTabState(menuItem, isOpen) {
+		const submenu = menuItem.children('.sub-menu');
+		const submenuLinks = submenu.find('a');
+
+		if ( ! submenu.length ) {
+			return;
+		}
+
+		menuItem.children('.da11y-submenu')
+			.attr('aria-expanded', isOpen ? 'true' : 'false');
+
+		submenu.toggleClass('da11y-submenu-show', isOpen);
+
+		if ( isOpen ) {
+			submenuLinks.removeAttr('tabindex');
+			return;
+		}
+
+		submenuLinks.attr('tabindex', '-1');
+		submenu.find('.da11y-submenu').attr('aria-expanded', 'false');
+		submenu.find('.sub-menu').removeClass('da11y-submenu-show');
+	}
 
 	$('.et-menu > li').on('focusout', function() {
 		$(this).removeClass('et-hover');
@@ -6,26 +28,32 @@ jQuery(document).ready(function($) {
 	if($('.menu-item-has-children > a').length ) {
 		$('.menu-item-has-children > a').addClass('da11y-submenu');
 		$('.menu-item-has-children > a').attr('aria-expanded', 'false');
+		$('.menu-item-has-children').each(function() {
+			setSubmenuTabState($(this), false);
+		});
 	}
 
 	$('.menu-item a').on('focus', function() {
-		$(this).siblings('.da11y-submenu').attr('aria-expanded', 'true');
-		$(this).siblings('.sub-menu').addClass('da11y-submenu-show');
+		setSubmenuTabState($(this).parent(), true);
 		$(this).trigger('mouseenter');
 	});
 
 	$('.menu-item-has-children a').on('focusout', function() {
 		if( $(this).parent().not('.menu-item-has-children').is(':last-child') ) {
-			$(this).parents('.menu-item-has-children').children('.da11y-submenu').attr('aria-expanded', 'false').trigger('mouseleave').siblings('.sub-menu').removeClass('da11y-submenu-show');
+			$(this).parents('.menu-item-has-children').each(function() {
+				setSubmenuTabState($(this), false);
+			}).trigger('mouseleave');
 		}
 	});
 
 	$('.menu-item-has-children a').keyup(function(event) {
 		if (event.keyCode === 27) {
+			event.preventDefault();
 			var menuParent = $(this).parents('.menu-item-has-children').last();
 			if(menuParent.length) {
+				setSubmenuTabState(menuParent, false);
+				menuParent.trigger('mouseleave');
 				menuParent.children('a').focus();
-				menuParent.find('.da11y-submenu').attr('aria-expanded', 'false').trigger('mouseleave').siblings('.sub-menu').removeClass('da11y-submenu-show');
 			}
 		}
 	});
@@ -98,4 +126,3 @@ jQuery(document).ready(function($) {
 	});
 
 });
-
