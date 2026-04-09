@@ -164,6 +164,7 @@ class Divi_Accessibility_Admin {
 
 		$options = array(
 			'aria_support'                 => 1,
+			'slider_accessibility'         => 1,
 			'dropdown_keyboard_navigation' => 1,
 			'fix_labels'                   => 1,
 			'focusable_modules'            => 1,
@@ -220,6 +221,21 @@ class Divi_Accessibility_Admin {
 				'name'          => 'aria_support',
 				'label_for'     => $this->da11y . '_aria_support',
 				'label_text'    => __( 'Add appropriate ARIA attributes across Divi elements &amp; modules.', 'divi-accessibility' ),
+				'label_subtext' => '',
+			)
+		);
+
+		// Dropdown keyboard navigation.
+		add_settings_field(
+			$this->da11y . '_slider_accessibility',
+			__( 'Slider accessibility', 'divi-accessibility' ),
+			array( $this, 'divi_accessibility_checkbox_cb' ),
+			$this->da11y,
+			$general_section,
+			array(
+				'name'          => 'slider_accessibility',
+				'label_for'     => $this->da11y . '_slider_accessibility',
+				'label_text'    => __( 'Add labels and keyboard controls to Divi slider arrows and navigation dots.', 'divi-accessibility' ),
 				'label_subtext' => '',
 			)
 		);

@@ -169,6 +169,7 @@ class Divi_Accessibility_Public {
 	public function get_script_resources() {
 		return array(
 			'dropdown_keyboard_navigation',
+			'slider_accessibility',
 			'skip_navigation_link',
 			'keyboard_navigation_outline',
 			'focusable_modules',
