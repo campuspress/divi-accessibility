@@ -234,11 +234,48 @@ jQuery(document).ready(function($) {
 	$('.et_pb_contactform_validate_field').attr('type', 'hidden');
 
 	/**
-	 * Add alert role to error or success contact form message
+	 * Add live region support to error and success contact form messages.
 	 *
 	 * @divi-module  Contact Form
 	 */
-	$('.et-pb-contact-message').attr('role', 'alert');
+	function setContactMessageLiveRegion($message) {
+		$message.attr({
+			'role': 'alert',
+			'aria-live': 'assertive',
+			'aria-atomic': 'true',
+			'tabindex': '-1'
+		});
+	}
+	setContactMessageLiveRegion($('.et-pb-contact-message'));
+
+	/**
+	 * Keep validation states in sync with Divi's error classes.
+	 *
+	 * @divi-module  Contact Form
+	 */
+	function syncContactFieldValidationState($form) {
+		$form.find('.input').each(function() {
+			var $field = $(this);
+			var hasError = $field.hasClass('et_contact_error');
+			$field.attr('aria-invalid', hasError ? 'true' : 'false');
+		});
+	}
+	$('.et_pb_contact_form').each(function() {
+		syncContactFieldValidationState($(this));
+	});
+
+	/**
+	 * Refresh contact message live regions and invalid states after submit.
+	 *
+	 * @divi-module  Contact Form
+	 */
+	$(document).on('submit', '.et_pb_contact_form', function() {
+		var $form = $(this);
+		setTimeout(function() {
+			syncContactFieldValidationState($form);
+			setContactMessageLiveRegion($form.find('.et-pb-contact-message'));
+		}, 200);
+	});
 
 	/**
 	* Add main role to main-content
