@@ -1,5 +1,19 @@
 ;( function() {
 	const opts = ( window || {} )._da11y || {};
+	const debugQueue = ( window || {} )._da11yDebugQueue || [];
+
+	const logDebugQueue = () => {
+		if ( ! debugQueue.length ) {
+			return;
+		}
+
+		console.groupCollapsed(
+			`Divi Accessibility Debug Changes (${ debugQueue.length })`
+		);
+		console.log( debugQueue );
+		console.groupEnd();
+	};
+
 	const out = () => {
 		console.log(
 			`\n%cDivi Accessibility Version ${ opts.version }`,
@@ -14,10 +28,10 @@
 				: '';
 			console.log( `${ option } ← ${ opt }`, meta );
 		} );
+		logDebugQueue();
 		console.log( "😎\n\n" );
 	};
 	if ( Object.keys( opts.options || {} ).length ) {
 		setTimeout( out );
 	}
 } )();
-
