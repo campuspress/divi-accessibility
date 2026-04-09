@@ -1,0 +1,13 @@
+@media (prefers-reduced-motion: reduce) {
+	#page-container *,
+	#main-content *,
+	.et_pb_slider *,
+	.et_pb_promo *,
+	.et_pb_blurb *,
+	.et_pb_fullwidth_header * {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

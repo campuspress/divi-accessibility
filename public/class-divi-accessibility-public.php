@@ -189,6 +189,7 @@ class Divi_Accessibility_Public {
 		return array(
 			'dropdown_keyboard_navigation',
 			'keyboard_navigation_outline',
+			'reduced_motion',
 			'screen_reader_text',
 			'underline_urls',
 			'underline_urls_not_title',
