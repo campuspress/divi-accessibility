@@ -68,9 +68,9 @@ jQuery(document).ready(function($) {
 
 				// Reset the aria attributes on the open toggle
 				$allSiblingToggles.each(function() {
-					$toggle = $(this);
+					var $toggle = $(this);
 					if ($toggle.hasClass('et_pb_toggle_open')) {
-						var $openToggleTitle = $toggle.find('.et_pb_toggle_title')
+						var $openToggleTitle = $toggle.find('.et_pb_toggle_title');
 
 						$openToggleTitle.attr('aria-expanded', false);
 						$openToggleTitle.removeAttr('aria-disabled');
@@ -94,4 +94,3 @@ jQuery(document).ready(function($) {
 	});
 
 });
-

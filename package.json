@@ -14,7 +14,7 @@
   },
   "scripts": {
     "styles": "node scripts/compress-css.js",
-    "lint-styles": "csslint public/partials/css --ignore=order-alphabetical,important --quiet",
+    "lint-styles": "node scripts/lint-css.js",
     "scripts": "node scripts/compress-js.js",
     "lint-scripts": "eslint public/partials/js",
     "lint": "npm run lint-scripts && npm run lint-styles",
