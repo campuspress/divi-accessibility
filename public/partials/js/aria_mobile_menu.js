@@ -1,5 +1,15 @@
 jQuery(document).ready(function($) {
 
+	function getOpenedMobileMenuToggle() {
+		const openedNav = $('.mobile_nav.opened').first();
+
+		if ( ! openedNav.length ) {
+			return $();
+		}
+
+		return openedNav.find('.mobile_menu_bar').first();
+	}
+
 	/**
 	 * Mobile menu Aria support.
 	 */
@@ -26,8 +36,10 @@ jQuery(document).ready(function($) {
 	*/
 	$(document).keyup(function(event) {
 		if (event.keyCode === 27) {
-			if($('#et_mobile_nav_menu .mobile_nav').hasClass('opened')) {
-				$('.mobile_menu_bar').click();
+			const menuToggle = getOpenedMobileMenuToggle();
+			if ( menuToggle.length ) {
+				menuToggle.click();
+				menuToggle.trigger('focus');
 			}
 		}
 	});
