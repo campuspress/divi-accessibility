@@ -13,7 +13,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Divi Accessibility
- * Plugin URI:        https://wordpress.org/plugins/accessible-divi/
+ * Plugin URI:        https://github.com/campuspress/divi-accessibility
  * Description:       Improve Divi accessibility in accordance with WCAG 2.0 guidelines.
  * Version:           2.0.6
  * Author:            CampusPress
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if ( ! defined( 'DA11Y_VERSION' ) ) {
-	define( 'DA11Y_VERSION', '2.0.5' );
+	define( 'DA11Y_VERSION', '2.0.6' );
 }
 
 // Used for referring to the plugin file or basename.

@@ -1,7 +1,5 @@
 ![divi-accessibility](https://cloud.githubusercontent.com/assets/6676674/26787287/72430f40-49d7-11e7-89ec-a5bf07eb0f97.png)
 
-[![wordpress.org version badge](https://img.shields.io/wordpress/plugin/v/accessible-divi.svg)](https://wordpress.org/plugins/accessible-divi/) [![wordpress.org download count badge](https://img.shields.io/wordpress/plugin/dt/accessible-divi.svg)](https://wordpress.org/plugins/accessible-divi/)
-
 A WordPress plugin that improves Divi accessibility in accordance with WCAG 2.0 guidelines. While there are many great plugins dealing with improving WordPress theme accessibility, this was developed for issues _specifically_ found within Divi.
 
 ## Features
@@ -37,6 +35,8 @@ To actually build a releaseable package, use the `npm run release [-y] [--versio
 The release version can either be supplied via a command line parameter (`--version=x.x.x`), or it will be inferred from the files that might be containing the version number (main php file and package.json). If the version number is being inferred, the highest one is the version that will be used.
 
 If the final resolved release version is different than what's in package.json and/or main php file, they can optionally be updated to match. By default, the prerelease script will ask for user input whether to do this or not. This can be prevented using the command line flag `-y` - if this command line flag is set, the files will always be updated if necessary without any further input.
+
+Official release changelog entries should continue to live in `readme.txt`.
 
 
 ## Resources
